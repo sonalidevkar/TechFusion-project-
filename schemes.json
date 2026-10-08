@@ -1,0 +1,356 @@
+[
+  {
+    "id": 1,
+    "name": "Stand-Up India Scheme",
+    "shortName": "Stand-Up India",
+    "ministry": "Ministry of Finance",
+    "category": [
+      "Loans",
+      "Entrepreneurship",
+      "SC / ST / Women"
+    ],
+    "tags": [
+      "SC",
+      "ST",
+      "Women",
+      "Greenfield Enterprise"
+    ],
+    "businessType": [
+      "Manufacturing",
+      "Services",
+      "Trading"
+    ],
+    "financialSupport": [
+      "Loan",
+      "Credit Support"
+    ],
+    "description": "A Government of India initiative intended to facilitate bank loans for eligible SC/ST entrepreneurs and women entrepreneurs for setting up greenfield enterprises.",
+    "benefit": "Bank loan support for eligible greenfield enterprises.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "Eligibility, loan terms and conditions should be verified from the official Stand-Up India portal."
+    },
+    "documents": [
+      "Identity Proof",
+      "Address Proof",
+      "Business / Project Documents",
+      "Bank Documents",
+      "Category Certificate where applicable"
+    ],
+    "officialLink": "https://www.standupmitra.in/",
+    "applyLink": "https://www.standupmitra.in/"
+  },
+  {
+    "id": 2,
+    "name": "Prime Minister's Employment Generation Programme",
+    "shortName": "PMEGP",
+    "ministry": "Ministry of Micro, Small & Medium Enterprises",
+    "category": [
+      "Loans",
+      "Entrepreneurship"
+    ],
+    "tags": [
+      "MSME",
+      "Employment",
+      "New Enterprise"
+    ],
+    "businessType": [
+      "Manufacturing",
+      "Service"
+    ],
+    "financialSupport": [
+      "Loan",
+      "Margin Money Subsidy"
+    ],
+    "description": "PMEGP is a credit-linked scheme aimed at generating employment opportunities through creation of new micro enterprises in rural and urban areas.",
+    "benefit": "Credit-linked financial assistance and margin money subsidy for eligible new micro enterprises.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "Exact project limits, subsidy rates and eligibility conditions should be verified on the official PMEGP portal."
+    },
+    "documents": [
+      "Identity Proof",
+      "Address Proof",
+      "Project Report",
+      "Bank Details",
+      "Educational / Technical Documents where applicable"
+    ],
+    "officialLink": "https://www.kviconline.gov.in/pmegpeportal/",
+    "applyLink": "https://www.kviconline.gov.in/pmegpeportal/"
+  },
+  {
+    "id": 3,
+    "name": "Pradhan Mantri MUDRA Yojana",
+    "shortName": "PMMY / MUDRA",
+    "ministry": "Ministry of Finance",
+    "category": [
+      "Loans",
+      "Entrepreneurship"
+    ],
+    "tags": [
+      "Micro Enterprise",
+      "Business Loan",
+      "MUDRA"
+    ],
+    "businessType": [
+      "Manufacturing",
+      "Trading",
+      "Services"
+    ],
+    "financialSupport": [
+      "Business Loan",
+      "Credit Support"
+    ],
+    "description": "Pradhan Mantri MUDRA Yojana provides institutional credit support to eligible micro enterprises through participating lending institutions.",
+    "benefit": "Access to institutional credit for eligible micro and small business activities.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "Loan category, amount, interest rate and repayment terms depend on the applicable lender and current scheme guidelines."
+    },
+    "documents": [
+      "Identity Proof",
+      "Address Proof",
+      "Business Proof",
+      "Bank Details",
+      "Business / Project Documents"
+    ],
+    "officialLink": "https://www.mudra.org.in/",
+    "applyLink": "https://www.mudra.org.in/"
+  },
+  {
+    "id": 4,
+    "name": "National SC-ST Hub",
+    "shortName": "NSSH",
+    "ministry": "Ministry of Micro, Small & Medium Enterprises",
+    "category": [
+      "SC / ST / Women",
+      "Entrepreneurship"
+    ],
+    "tags": [
+      "SC",
+      "ST",
+      "MSE",
+      "Procurement",
+      "Capacity Building"
+    ],
+    "businessType": [
+      "Manufacturing",
+      "Services",
+      "Trading"
+    ],
+    "financialSupport": [
+      "Capacity Building",
+      "Marketing Support",
+      "Procurement Support"
+    ],
+    "description": "The National SC-ST Hub supports SC/ST owned Micro and Small Enterprises through capacity building, market access, procurement support and other interventions.",
+    "benefit": "Support for capacity building, market access and participation in government procurement opportunities.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "Specific eligibility and available interventions should be checked with the National SC-ST Hub / MSME portal."
+    },
+    "documents": [
+      "Udyam Registration",
+      "SC / ST Certificate",
+      "Identity Proof",
+      "Business Documents",
+      "Bank Details"
+    ],
+    "officialLink": "https://www.msme.gov.in/",
+    "applyLink": "https://www.msme.gov.in/"
+  },
+  {
+    "id": 5,
+    "name": "Pradhan Mantri Formalisation of Micro Food Processing Enterprises",
+    "shortName": "PMFME",
+    "ministry": "Ministry of Food Processing Industries",
+    "category": [
+      "Food Processing",
+      "Entrepreneurship",
+      "Loans"
+    ],
+    "tags": [
+      "Food",
+      "Micro Food Enterprise",
+      "Formalisation",
+      "ODOP"
+    ],
+    "businessType": [
+      "Food Processing",
+      "Micro Enterprise"
+    ],
+    "financialSupport": [
+      "Credit Linked Subsidy",
+      "Capacity Building",
+      "Branding Support"
+    ],
+    "description": "PMFME supports the formalisation and strengthening of micro food processing enterprises and provides support through financial assistance, capacity building and related interventions.",
+    "benefit": "Support for formalisation, upgrading, capacity building and strengthening of micro food processing enterprises.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "Current component-wise eligibility and assistance should be verified on the official PMFME portal."
+    },
+    "documents": [
+      "Identity Proof",
+      "Address Proof",
+      "Business Documents",
+      "Bank Details",
+      "Food Processing Related Documents"
+    ],
+    "officialLink": "https://pmfme.mofpi.gov.in/",
+    "applyLink": "https://pmfme.mofpi.gov.in/"
+  },
+  {
+    "id": 6,
+    "name": "Credit Guarantee Scheme for Micro and Small Enterprises",
+    "shortName": "CGTMSE",
+    "ministry": "Ministry of Micro, Small & Medium Enterprises",
+    "category": [
+      "Credit Guarantee",
+      "Loans",
+      "Entrepreneurship"
+    ],
+    "tags": [
+      "MSME",
+      "Credit Guarantee",
+      "Collateral Support"
+    ],
+    "businessType": [
+      "Manufacturing",
+      "Services"
+    ],
+    "financialSupport": [
+      "Credit Guarantee",
+      "Loan Support"
+    ],
+    "description": "The Credit Guarantee Scheme facilitates access to institutional credit for eligible micro and small enterprises by providing credit guarantee support through the applicable framework.",
+    "benefit": "Credit guarantee support that can help eligible MSEs access institutional finance.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "Guarantee coverage, eligible facilities, fees and other conditions should be verified from the official CGTMSE portal."
+    },
+    "documents": [
+      "Udyam Registration",
+      "KYC Documents",
+      "Business Documents",
+      "Bank / Loan Documents"
+    ],
+    "officialLink": "https://www.cgtmse.in/",
+    "applyLink": "https://www.cgtmse.in/"
+  },
+  {
+    "id": 7,
+    "name": "Startup India",
+    "shortName": "Startup India / DPIIT Recognition",
+    "ministry": "Department for Promotion of Industry and Internal Trade",
+    "category": [
+      "Entrepreneurship",
+      "Startup"
+    ],
+    "tags": [
+      "Startup",
+      "DPIIT",
+      "Innovation",
+      "IPR",
+      "Tax Benefits"
+    ],
+    "businessType": [
+      "Technology",
+      "Innovation",
+      "Services",
+      "Manufacturing"
+    ],
+    "financialSupport": [
+      "Startup Support",
+      "Funding Access",
+      "Mentorship"
+    ],
+    "description": "Startup India is a Government of India initiative supporting the startup ecosystem through recognition, funding-related initiatives, mentorship, intellectual property support and other startup-focused programs.",
+    "benefit": "Access to startup ecosystem initiatives including DPIIT recognition, easier compliance, IPR facilitation and eligible benefits.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "DPIIT recognition has specific current criteria relating to entity type, age, turnover and innovation/scalability. Verify current criteria on Startup India."
+    },
+    "documents": [
+      "Certificate of Incorporation / Registration",
+      "PAN",
+      "Business Details",
+      "Founder Details",
+      "Innovation / Business Information"
+    ],
+    "officialLink": "https://www.startupindia.gov.in/",
+    "applyLink": "https://www.startupindia.gov.in/"
+  },
+  {
+    "id": 8,
+    "name": "Women Entrepreneurship Support",
+    "shortName": "Women Entrepreneurship Initiatives",
+    "ministry": "Government of India",
+    "category": [
+      "SC / ST / Women",
+      "Entrepreneurship",
+      "Loans"
+    ],
+    "tags": [
+      "Women",
+      "Entrepreneurship",
+      "Business Support"
+    ],
+    "businessType": [
+      "Manufacturing",
+      "Trading",
+      "Services"
+    ],
+    "financialSupport": [
+      "Loan Support",
+      "Entrepreneurship Support"
+    ],
+    "description": "Women entrepreneurs can access multiple government and institutional programmes designed to improve access to finance, entrepreneurship development, skills, markets and business support.",
+    "benefit": "Access to relevant government entrepreneurship, finance and business-support programmes for eligible women entrepreneurs.",
+    "status": "Active",
+    "eligibility": {
+      "states": [
+        "All"
+      ],
+      "maxIncome": null,
+      "notes": "This entry is a discovery category rather than a single standalone central scheme. Users should verify the exact applicable programme and eligibility before applying."
+    },
+    "documents": [
+      "Identity Proof",
+      "Address Proof",
+      "Business Documents",
+      "Bank Details",
+      "Category Documents where applicable"
+    ],
+    "officialLink": "https://www.jansamarth.in/",
+    "applyLink": "https://www.jansamarth.in/"
+  }
+]

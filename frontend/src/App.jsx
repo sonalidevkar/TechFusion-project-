@@ -9,6 +9,8 @@ import Calculator from "./pages/Calculator";
 import Partner from "./pages/Partner";
 import Track from "./pages/Track";
 import Literacy from "./pages/Literacy";
+import MatchScheme from "./pages/MatchScheme";
+import SchemeDetails from "./pages/SchemeDetails";
 
 
 function FeaturePage({ title, description, icon }) {
@@ -21,7 +23,6 @@ function FeaturePage({ title, description, icon }) {
       >
         ← Back to Home
       </Link>
-
 
       <div className="feature-page-card">
 
@@ -97,6 +98,21 @@ function App() {
           path="/calculator"
           element={<Calculator />}
         />
+
+
+        {/* AI SCHEME MATCHING */}
+        <Route
+          path="/match-scheme"
+          element={<MatchScheme />}
+        />
+
+
+        {/* SCHEME DETAILS */}
+        <Route
+          path="/scheme-details"
+          element={<SchemeDetails />}
+        />
+
 
         <Route
           path="/partner"

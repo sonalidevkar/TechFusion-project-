@@ -1,5 +1,4 @@
 import {
-  ArrowLeft,
   ArrowRight,
   Brain,
   CheckCircle2,
@@ -7,384 +6,142 @@ import {
   FileCheck2,
   IndianRupee,
   Landmark,
-  MapPin,
   Search,
   ShieldCheck,
   Sparkles,
   WalletCards,
+  MapPin,
+  BriefcaseBusiness,
 } from "lucide-react";
 
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-
-
-/* =========================================================
-   REAL GOVERNMENT SCHEMES
-   Official portals / official Government pages
-========================================================= */
-
-const governmentSchemes = [
-  {
-    id: 1,
-
-    name: "Prime Minister's Employment Generation Programme",
-    shortName: "PMEGP",
-
-    ministry: "Ministry of Micro, Small & Medium Enterprises",
-
-    category: "Entrepreneurship",
-
-    tags: [
-      "Micro Enterprise",
-      "New Business",
-      "Employment",
-      "Rural",
-    ],
-
-    description:
-      "A Government of India programme supporting aspiring entrepreneurs to establish new micro enterprises in the non-farm sector.",
-
-    benefit:
-      "Credit-linked margin money subsidy support",
-
-    eligibility:
-      "Suitable for eligible individuals and entities establishing new micro enterprises, subject to scheme guidelines.",
-
-    officialLink:
-      "https://ia-pmegp.msme.gov.in/",
-
-    applyLink:
-      "https://kviconline.gov.in/pmegpeportal/jsp/loginPage.jsp",
-
-    icon: "🏭",
-
-    color: "orange",
-  },
-
-
-  {
-    id: 2,
-
-    name: "Pradhan Mantri MUDRA Yojana",
-    shortName: "PMMY",
-
-    ministry: "Department of Financial Services, Ministry of Finance",
-
-    category: "Loans",
-
-    tags: [
-      "Micro Business",
-      "Working Capital",
-      "Manufacturing",
-      "Trading",
-      "Services",
-    ],
-
-    description:
-      "Collateral-free institutional credit support for micro enterprises engaged in income-generating activities.",
-
-    benefit:
-      "Shishu up to ₹50,000 • Kishor up to ₹5 lakh • Tarun up to ₹10 lakh • Tarun Plus up to ₹20 lakh for eligible previous Tarun borrowers",
-
-    eligibility:
-      "For eligible micro enterprises and entrepreneurs undertaking income-generating activities covered under PMMY.",
-
-    officialLink:
-      "https://financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
-
-    applyLink:
-      "https://www.jansamarth.in/home",
-
-    icon: "💰",
-
-    color: "green",
-  },
-
-
-  {
-    id: 3,
-
-    name: "Stand-Up India Scheme",
-    shortName: "Stand-Up India",
-
-    ministry: "Department of Financial Services, Ministry of Finance",
-
-    category: "SC / ST / Women",
-
-    tags: [
-      "SC",
-      "ST",
-      "Women",
-      "Greenfield Enterprise",
-      "Loan",
-    ],
-
-    description:
-      "Supports entrepreneurship among Scheduled Castes, Scheduled Tribes and women by facilitating bank credit for eligible greenfield enterprises.",
-
-    benefit:
-      "Composite loans from ₹10 lakh to ₹1 crore for eligible greenfield enterprises",
-
-    eligibility:
-      "Entrepreneurs above 18 years from eligible SC/ST categories or women entrepreneurs, subject to scheme conditions.",
-
-    officialLink:
-      "https://financialservices.gov.in/stand-india-scheme-supi",
-
-    applyLink:
-      "https://www.standupmitra.in/",
-
-    icon: "🚀",
-
-    color: "purple",
-  },
-
-
-  {
-    id: 4,
-
-    name: "PM Vishwakarma",
-    shortName: "PM Vishwakarma",
-
-    ministry: "Ministry of Micro, Small & Medium Enterprises",
-
-    category: "Artisans",
-
-    tags: [
-      "Artisan",
-      "Craftsperson",
-      "Traditional Trade",
-      "Skill",
-      "Toolkit",
-    ],
-
-    description:
-      "A Central Sector Scheme providing end-to-end support to artisans and craftspeople through recognition, training, toolkit support, credit and market linkage.",
-
-    benefit:
-      "Skill training • ₹15,000 toolkit incentive • collateral-free credit support • digital transaction incentive • marketing support",
-
-    eligibility:
-      "For eligible artisans and craftspeople working with hands and tools in one of the covered traditional trades.",
-
-    officialLink:
-      "https://www.myscheme.gov.in/schemes/pmv",
-
-    applyLink:
-      "https://pmvishwakarma.gov.in/",
-
-    icon: "🛠️",
-
-    color: "blue",
-  },
-
-
-  {
-    id: 5,
-
-    name: "Pradhan Mantri Formalisation of Micro Food Processing Enterprises",
-    shortName: "PMFME",
-
-    ministry: "Ministry of Food Processing Industries",
-
-    category: "Food Processing",
-
-    tags: [
-      "Food",
-      "Micro Enterprise",
-      "ODOP",
-      "SHG",
-      "FPO",
-    ],
-
-    description:
-      "Government support for formalisation and upgrading of micro food-processing enterprises, with a focus on individual units and groups.",
-
-    benefit:
-      "Credit-linked capital subsidy and other support components subject to scheme guidelines",
-
-    eligibility:
-      "Support is available to eligible individual and group food-processing enterprises under the applicable scheme components.",
-
-    officialLink:
-      "https://pmfme.mofpi.gov.in/pmfme/",
-
-    applyLink:
-      "https://pmfme.mofpi.gov.in/pmfme/",
-
-    icon: "🍱",
-
-    color: "yellow",
-  },
-
-
-  {
-    id: 6,
-
-    name: "Credit Guarantee Scheme for Micro & Small Enterprises",
-    shortName: "CGTMSE",
-
-    ministry: "Ministry of Micro, Small & Medium Enterprises",
-
-    category: "Credit Guarantee",
-
-    tags: [
-      "MSME",
-      "Collateral-Free",
-      "Credit",
-      "Business Loan",
-    ],
-
-    description:
-      "Provides credit guarantee support for eligible credit facilities extended to micro and small enterprises by participating lending institutions.",
-
-    benefit:
-      "Credit guarantee support for eligible facilities; current scheme framework supports credit facilities up to ₹10 crore",
-
-    eligibility:
-      "Eligible micro and small enterprises obtaining qualifying credit through participating lending institutions.",
-
-    officialLink:
-      "https://www.cgtmse.in/",
-
-    applyLink:
-      "https://www.cgtmse.in/",
-
-    icon: "🛡️",
-
-    color: "teal",
-  },
-
-
-  {
-    id: 7,
-
-    name: "PM Street Vendor's AtmaNirbhar Nidhi",
-    shortName: "PM SVANidhi",
-
-    ministry: "Ministry of Housing & Urban Affairs",
-
-    category: "Street Vendors",
-
-    tags: [
-      "Street Vendor",
-      "Working Capital",
-      "Urban",
-      "Digital",
-    ],
-
-    description:
-      "A Government scheme providing working-capital support and other interventions for eligible street vendors.",
-
-    benefit:
-      "Working-capital loan support with digital adoption and other scheme benefits subject to current guidelines",
-
-    eligibility:
-      "For eligible street vendors under PM SVANidhi guidelines.",
-
-    officialLink:
-      "https://pmsvanidhi.mohua.gov.in/",
-
-    applyLink:
-      "https://pmsvanidhi.mohua.gov.in/",
-
-    icon: "🛒",
-
-    color: "pink",
-  },
-
-
-  {
-    id: 8,
-
-    name: "National SC-ST Hub",
-    shortName: "NSSH",
-
-    ministry: "Ministry of Micro, Small & Medium Enterprises",
-
-    category: "SC / ST Entrepreneurs",
-
-    tags: [
-      "SC",
-      "ST",
-      "Market Access",
-      "Capacity Building",
-      "Procurement",
-    ],
-
-    description:
-      "A focused MSME initiative supporting SC/ST entrepreneurs through capacity building, market access, procurement support and business development.",
-
-    benefit:
-      "Business support, capacity building, market linkage and procurement-related assistance",
-
-    eligibility:
-      "Designed for eligible SC/ST entrepreneurs and enterprises under applicable National SC-ST Hub components.",
-
-    officialLink:
-      "https://www.scsthub.in/",
-
-    applyLink:
-      "https://www.scsthub.in/",
-
-    icon: "🤝",
-
-    color: "red",
-  },
-];
-
-
-/* =========================================================
-   SCHEMES PAGE
-========================================================= */
+import { useEffect, useMemo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Schemes() {
+  const navigate = useNavigate();
 
+  const [schemes, setSchemes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
   const [selectedCategory, setSelectedCategory] =
     useState("All");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
+  /* ================= FETCH SCHEMES ================= */
 
-  /* =====================================================
-     FILTER SCHEMES
-  ===================================================== */
+  useEffect(() => {
+    const fetchSchemes = async () => {
+      try {
+        setLoading(true);
+        setError("");
 
-  const filteredSchemes = useMemo(() => {
-
-    return governmentSchemes.filter((scheme) => {
-
-      const matchesSearch =
-        scheme.name
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-
-        scheme.shortName
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-
-        scheme.description
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-
-        scheme.tags.some((tag) =>
-          tag
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
+        const response = await fetch(
+          "http://localhost:5000/api/schemes"
         );
 
+        if (!response.ok) {
+          throw new Error("Failed to fetch schemes");
+        }
 
-      const matchesCategory =
-        selectedCategory === "All" ||
-        scheme.category === selectedCategory;
+        const data = await response.json();
 
+        if (!data.success) {
+          throw new Error(
+            data.message || "Unable to load schemes"
+          );
+        }
 
-      return matchesSearch && matchesCategory;
+        const formattedSchemes = (
+          data.schemes || []
+        ).map((scheme, index) => ({
+          ...scheme,
 
-    });
+          id: scheme.id || index + 1,
 
-  }, [searchTerm, selectedCategory]);
+          name:
+            scheme.name ||
+            "Government Scheme",
 
+          shortName:
+            scheme.shortName ||
+            scheme.name ||
+            "Government Support Scheme",
+
+          ministry:
+            scheme.ministry ||
+            "Government of India",
+
+          category:
+            Array.isArray(scheme.category)
+              ? scheme.category
+              : scheme.category
+              ? [scheme.category]
+              : [],
+
+          tags:
+            Array.isArray(scheme.tags)
+              ? scheme.tags
+              : [],
+
+          description:
+            scheme.description ||
+            "Government support scheme for eligible applicants.",
+
+          benefit:
+            scheme.benefit ||
+            "Financial and business support.",
+
+          financialSupport:
+            Array.isArray(
+              scheme.financialSupport
+            )
+              ? scheme.financialSupport
+              : scheme.financialSupport
+              ? [scheme.financialSupport]
+              : [],
+
+          eligibility:
+            scheme.eligibility || {},
+
+          businessType:
+            Array.isArray(scheme.businessType)
+              ? scheme.businessType
+              : scheme.businessType
+              ? [scheme.businessType]
+              : [],
+
+          officialLink:
+            scheme.officialLink || "#",
+
+          applyLink:
+            scheme.applyLink || "#",
+
+          icon:
+            scheme.icon || "🤝",
+
+          status:
+            scheme.status || "Active",
+        }));
+
+        setSchemes(formattedSchemes);
+      } catch (err) {
+        console.error(
+          "Schemes fetch error:",
+          err
+        );
+
+        setError(
+          "Unable to load government schemes. Please make sure the backend server is running."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSchemes();
+  }, []);
+
+  /* ================= CATEGORIES ================= */
 
   const categories = [
     "All",
@@ -395,494 +152,995 @@ function Schemes() {
     "Food Processing",
     "Credit Guarantee",
     "Street Vendors",
-    "SC / ST Entrepreneurs",
   ];
 
+  /* ================= HELPERS ================= */
+
+  const getStates = (scheme) => {
+    const states =
+      scheme?.eligibility?.states;
+
+    if (
+      Array.isArray(states) &&
+      states.length > 0
+    ) {
+      return states;
+    }
+
+    return ["All States"];
+  };
+
+  const getMaxIncome = (scheme) => {
+    const income =
+      scheme?.eligibility?.maxIncome;
+
+    if (
+      income === null ||
+      income === undefined
+    ) {
+      return null;
+    }
+
+    return Number(income);
+  };
+
+  /* ================= CATEGORY MATCH ================= */
+
+  const matchesCategory = (
+    scheme,
+    category
+  ) => {
+    if (category === "All") {
+      return true;
+    }
+
+    const text = [
+      scheme.name,
+      scheme.description,
+      scheme.benefit,
+      ...(scheme.category || []),
+      ...(scheme.tags || []),
+      ...(scheme.financialSupport || []),
+      ...(scheme.businessType || []),
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    switch (category) {
+      case "Loans":
+        return (
+          text.includes("loan") ||
+          text.includes("credit")
+        );
+
+      case "Entrepreneurship":
+        return (
+          text.includes("entrepreneur") ||
+          text.includes("startup") ||
+          text.includes("business")
+        );
+
+      case "SC / ST / Women":
+        return (
+          text.includes("sc") ||
+          text.includes("st") ||
+          text.includes("women")
+        );
+
+      case "Artisans":
+        return (
+          text.includes("artisan") ||
+          text.includes("craft")
+        );
+
+      case "Food Processing":
+        return (
+          text.includes("food") ||
+          text.includes("processing")
+        );
+
+      case "Credit Guarantee":
+        return text.includes(
+          "guarantee"
+        );
+
+      case "Street Vendors":
+        return (
+          text.includes("vendor") ||
+          text.includes(
+            "street vendor"
+          )
+        );
+
+      default:
+        return false;
+    }
+  };
+
+  /* ================= FILTER ================= */
+
+  const filteredSchemes = useMemo(() => {
+    const search =
+      searchTerm.trim().toLowerCase();
+
+    return schemes.filter((scheme) => {
+      const searchableText = [
+        scheme.name,
+        scheme.shortName,
+        scheme.ministry,
+        scheme.description,
+        scheme.benefit,
+        ...(scheme.category || []),
+        ...(scheme.tags || []),
+        ...(scheme.financialSupport || []),
+        ...(scheme.businessType || []),
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      const searchMatch =
+        !search ||
+        searchableText.includes(search);
+
+      return (
+        searchMatch &&
+        matchesCategory(
+          scheme,
+          selectedCategory
+        )
+      );
+    });
+  }, [
+    schemes,
+    searchTerm,
+    selectedCategory,
+  ]);
+
+  /* ================= VIEW DETAILS ================= */
+
+  const handleViewDetails = (scheme) => {
+    navigate("/scheme-details", {
+      state: {
+        scheme: scheme,
+      },
+    });
+  };
+
+  /* ================= JSX ================= */
 
   return (
     <div className="schemes-page">
 
-      {/* =================================================
-          HEADER
-      ================================================= */}
+      {/* ================= HEADER ================= */}
 
-      <header className="schemes-topbar">
+      <header className="schemes-header">
+        <div className="schemes-header-inner">
 
-        <Link
-          to="/"
-          className="schemes-brand"
-        >
+          <Link
+            to="/"
+            className="schemes-logo"
+          >
+            <div className="schemes-logo-icon">
+              🤖
+            </div>
 
-          <div className="schemes-brand-icon">
-            <Sparkles size={21} />
-          </div>
+            <div>
+              <strong>
+                YojanaSathi AI
+              </strong>
 
-          <div>
+              <span>
+                Government Scheme Discovery
+              </span>
+            </div>
+          </Link>
 
-            <h2>
-              YojanaSathi AI
-            </h2>
+          <Link
+            to="/match-scheme"
+            className="schemes-ai-button"
+          >
+            <Brain size={18} />
+            AI Scheme Matcher
+          </Link>
 
-            <p>
-              Find • Qualify • Apply • Grow
-            </p>
-
-          </div>
-
-        </Link>
-
-
-        <Link
-          to="/"
-          className="schemes-back-home"
-        >
-
-          <ArrowLeft size={16} />
-
-          Back to Home
-
-        </Link>
-
+        </div>
       </header>
 
+      {/* ================= HERO ================= */}
 
-      {/* =================================================
-          MAIN
-      ================================================= */}
+      <section className="schemes-intro">
 
-      <main className="schemes-main">
+        <div className="schemes-intro-content">
 
+          <Link
+            to="/"
+            className="schemes-back-link"
+          >
+            ← Back to Home
+          </Link>
 
-        {/* =================================================
-            INTRO
-        ================================================= */}
+          <div className="schemes-hero-grid">
 
-        <section className="schemes-intro">
+            <div>
 
-          <div className="scheme-ai-badge">
+              <p className="schemes-label">
+                GOVERNMENT SCHEMES
+              </p>
 
-            <Brain size={15} />
+              <h1>
+                Find the Right
+                <br />
+                <span>
+                  Government Support
+                </span>
+              </h1>
 
-            Real Government Schemes
+              <p className="schemes-description">
+                Explore loans, subsidies,
+                grants and business support
+                programs designed to help
+                entrepreneurs and individuals
+                grow.
+              </p>
+
+              <div className="schemes-stats">
+
+                <div>
+                  <strong>
+                    {schemes.length}
+                  </strong>
+
+                  <span>
+                    Schemes
+                  </span>
+                </div>
+
+                <div>
+                  <strong>
+                    8+
+                  </strong>
+
+                  <span>
+                    Support Areas
+                  </span>
+                </div>
+
+                <div>
+                  <strong>
+                    AI
+                  </strong>
+
+                  <span>
+                    Smart Matching
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* HERO VISUAL */}
+
+            <div className="schemes-hero-visual">
+
+              <div className="hero-floating-card card-one">
+
+                <IndianRupee size={20} />
+
+                <div>
+                  <strong>
+                    Financial Support
+                  </strong>
+
+                  <span>
+                    Loans & Subsidies
+                  </span>
+                </div>
+
+              </div>
+
+              <div className="hero-main-icon">
+                🤝
+              </div>
+
+              <div className="hero-floating-card card-two">
+
+                <CheckCircle2 size={20} />
+
+                <div>
+                  <strong>
+                    Smart Discovery
+                  </strong>
+
+                  <span>
+                    Find suitable schemes
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
 
           </div>
 
+        </div>
 
-          <h1>
+      </section>
 
-            Find the Right
+      {/* ================= SEARCH ================= */}
 
-            <br />
+      <section className="schemes-search-section">
 
-            <span>
-              Government Support for You
-            </span>
+        <div className="schemes-search-wrapper">
 
-          </h1>
+          <div className="schemes-search-box">
 
-
-          <p>
-
-            Explore real Government of India schemes for loans,
-            subsidies, credit support, entrepreneurship, artisans,
-            street vendors and marginalized entrepreneurs.
-
-          </p>
-
-
-          <div className="official-notice">
-
-            <ShieldCheck size={16} />
-
-            <span>
-              Scheme information and links are connected to
-              official government portals.
-            </span>
-
-          </div>
-
-        </section>
-
-
-        {/* =================================================
-            SEARCH + FILTER
-        ================================================= */}
-
-        <section className="scheme-search-section">
-
-
-          {/* SEARCH */}
-
-          <div className="scheme-search-box">
-
-            <Search size={19} />
+            <Search size={21} />
 
             <input
               type="text"
-              placeholder="Search scheme, loan, artisan, SC, women, food..."
+              placeholder="Search by scheme name, loan, subsidy, startup..."
               value={searchTerm}
-              onChange={(event) =>
-                setSearchTerm(event.target.value)
+              onChange={(e) =>
+                setSearchTerm(
+                  e.target.value
+                )
               }
             />
 
+            {searchTerm && (
+              <button
+                onClick={() =>
+                  setSearchTerm("")
+                }
+                className="search-clear"
+              >
+                ×
+              </button>
+            )}
+
           </div>
 
+          <Link
+            to="/match-scheme"
+            className="search-ai-button"
+          >
+            <Sparkles size={18} />
+            Find My Scheme
+          </Link>
 
-          {/* CATEGORIES */}
+        </div>
 
-          <div className="scheme-categories">
+        {/* CATEGORY BUTTONS */}
 
-            {categories.map((category) => (
+        <div className="schemes-category-list">
+
+          {categories.map(
+            (category) => (
 
               <button
                 key={category}
-                type="button"
                 className={
-                  selectedCategory === category
-                    ? "scheme-category active"
-                    : "scheme-category"
+                  selectedCategory ===
+                  category
+                    ? "category-button active"
+                    : "category-button"
                 }
                 onClick={() =>
-                  setSelectedCategory(category)
+                  setSelectedCategory(
+                    category
+                  )
                 }
               >
                 {category}
               </button>
 
-            ))}
-
-          </div>
-
-        </section>
-
-
-        {/* =================================================
-            RESULTS
-        ================================================= */}
-
-        <section className="scheme-results-section">
-
-          <div className="scheme-results-header">
-
-            <div>
-
-              <span>
-                GOVERNMENT SCHEMES
-              </span>
-
-              <h2>
-                {filteredSchemes.length} Schemes Found
-              </h2>
-
-            </div>
-
-
-            <div className="scheme-live-indicator">
-
-              <span></span>
-
-              Live Official Links
-
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              CARD GRID
-          ================================================= */}
-
-          <div className="scheme-card-grid">
-
-
-            {filteredSchemes.map((scheme) => (
-
-              <article
-                className={`government-scheme-card ${scheme.color}`}
-                key={scheme.id}
-              >
-
-
-                {/* CARD TOP */}
-
-                <div className="scheme-card-top">
-
-                  <div className="scheme-icon-box">
-                    {scheme.icon}
-                  </div>
-
-
-                  <span className="scheme-category-label">
-                    {scheme.category}
-                  </span>
-
-                </div>
-
-
-                {/* TITLE */}
-
-                <div className="scheme-title-area">
-
-                  <span className="scheme-short-name">
-                    {scheme.shortName}
-                  </span>
-
-                  <h3>
-                    {scheme.name}
-                  </h3>
-
-                </div>
-
-
-                {/* MINISTRY */}
-
-                <div className="scheme-ministry">
-
-                  <Landmark size={14} />
-
-                  <span>
-                    {scheme.ministry}
-                  </span>
-
-                </div>
-
-
-                {/* DESCRIPTION */}
-
-                <p className="scheme-description">
-                  {scheme.description}
-                </p>
-
-
-                {/* BENEFIT */}
-
-                <div className="scheme-benefit-box">
-
-                  <div className="scheme-benefit-icon">
-                    <WalletCards size={16} />
-                  </div>
-
-                  <div>
-
-                    <span>
-                      Key Support
-                    </span>
-
-                    <strong>
-                      {scheme.benefit}
-                    </strong>
-
-                  </div>
-
-                </div>
-
-
-                {/* TAGS */}
-
-                <div className="scheme-tags">
-
-                  {scheme.tags.slice(0, 4).map((tag) => (
-
-                    <span key={tag}>
-                      {tag}
-                    </span>
-
-                  ))}
-
-                </div>
-
-
-                {/* ELIGIBILITY */}
-
-                <div className="scheme-eligibility">
-
-                  <FileCheck2 size={15} />
-
-                  <div>
-
-                    <span>
-                      Eligibility
-                    </span>
-
-                    <p>
-                      {scheme.eligibility}
-                    </p>
-
-                  </div>
-
-                </div>
-
-
-                {/* ACTIONS */}
-
-                <div className="scheme-actions">
-
-
-                  <a
-                    href={scheme.officialLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="scheme-details-btn"
-                  >
-
-                    Official Details
-
-                    <ExternalLink size={14} />
-
-                  </a>
-
-
-                  <a
-                    href={scheme.applyLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="scheme-apply-btn"
-                  >
-
-                    Apply / Portal
-
-                    <ArrowRight size={15} />
-
-                  </a>
-
-                </div>
-
-
-                {/* GOVERNMENT NOTICE */}
-
-                <div className="scheme-official-label">
-
-                  <CheckCircle2 size={13} />
-
-                  Official Government Source
-
-                </div>
-
-              </article>
-
-            ))}
-
-          </div>
-
-
-          {/* =================================================
-              NO RESULT
-          ================================================= */}
-
-          {filteredSchemes.length === 0 && (
-
-            <div className="no-schemes">
-
-              <Search size={35} />
-
-              <h3>
-                No matching schemes found
-              </h3>
-
-              <p>
-                Try another search term or choose a different category.
-              </p>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchTerm("");
-                  setSelectedCategory("All");
-                }}
-              >
-                Show All Schemes
-              </button>
-
-            </div>
-
+            )
           )}
 
-        </section>
+        </div>
 
+      </section>
 
-        {/* =================================================
-            JAN SAMARTH
-        ================================================= */}
+      {/* ================= MAIN ================= */}
 
-        <section className="jansamarth-card">
+      <main className="schemes-main">
 
-          <div className="jansamarth-icon">
+        {/* LOADING */}
 
-            <IndianRupee size={25} />
+        {loading && (
 
-          </div>
+          <div className="schemes-message">
 
-
-          <div className="jansamarth-content">
-
-            <span>
-              OFFICIAL FINANCIAL SCHEME DISCOVERY
-            </span>
+            <div className="schemes-loading-icon">
+              🤖
+            </div>
 
             <h2>
-              Explore eligible credit schemes through JanSamarth
+              Finding Government Schemes...
             </h2>
 
             <p>
-              JanSamarth is the Government of India's unified portal
-              that onboards multiple credit-linked schemes and connects
-              applicants with lenders and government stakeholders.
+              YojanaSathi AI is loading
+              available support programs.
             </p>
 
           </div>
 
+        )}
 
-          <a
-            href="https://www.jansamarth.in/home"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="jansamarth-btn"
-          >
+        {/* ERROR */}
 
-            Open JanSamarth
+        {!loading && error && (
 
-            <ExternalLink size={15} />
+          <div className="schemes-message error">
 
-          </a>
+            <div className="schemes-loading-icon">
+              ⚠️
+            </div>
 
-        </section>
+            <h2>
+              Unable to Load Schemes
+            </h2>
 
+            <p>
+              {error}
+            </p>
 
-        {/* =================================================
-            TRUST
-        ================================================= */}
+            <button
+              className="scheme-primary-button"
+              onClick={() =>
+                window.location.reload()
+              }
+            >
+              Try Again
+            </button>
 
-        <section className="scheme-trust-section">
+          </div>
+
+        )}
+
+        {/* SUCCESS */}
+
+        {!loading && !error && (
+
+          <>
+
+            {/* RESULTS HEADER */}
+
+            <div className="schemes-results-header">
+
+              <div>
+
+                <p className="schemes-label">
+                  SCHEME DIRECTORY
+                </p>
+
+                <h2>
+                  Explore Suitable Schemes
+                </h2>
+
+                <p className="results-subtitle">
+                  Showing{" "}
+                  <strong>
+                    {filteredSchemes.length}
+                  </strong>{" "}
+                  of{" "}
+                  <strong>
+                    {schemes.length}
+                  </strong>{" "}
+                  available schemes
+                </p>
+
+              </div>
+
+              <div className="schemes-result-info">
+
+                <CheckCircle2 size={18} />
+
+                Verified Directory
+
+              </div>
+
+            </div>
+
+            {/* SCHEME CARDS */}
+
+            {filteredSchemes.length > 0 ? (
+
+              <div className="schemes-grid">
+
+                {filteredSchemes.map(
+                  (scheme) => {
+
+                    const states =
+                      getStates(
+                        scheme
+                      );
+
+                    const maxIncome =
+                      getMaxIncome(
+                        scheme
+                      );
+
+                    return (
+
+                      <article
+                        className="scheme-card attractive-card"
+                        key={scheme.id}
+                      >
+
+                        {/* CARD TOP */}
+
+                        <div className="scheme-card-top">
+
+                          <div className="scheme-card-icon">
+                            {scheme.icon}
+                          </div>
+
+                          <div className="scheme-card-status">
+
+                            <CheckCircle2
+                              size={14}
+                            />
+
+                            {scheme.status}
+
+                          </div>
+
+                        </div>
+
+                        {/* CARD CONTENT */}
+
+                        <div className="scheme-card-content">
+
+                          <p className="scheme-ministry">
+
+                            <Landmark
+                              size={14}
+                            />
+
+                            {scheme.ministry}
+
+                          </p>
+
+                          <h3>
+                            {scheme.name}
+                          </h3>
+
+                          <p className="scheme-short-name">
+                            {scheme.shortName}
+                          </p>
+
+                          <p className="scheme-description">
+                            {scheme.description}
+                          </p>
+
+                          {/* BENEFIT */}
+
+                          <div className="scheme-benefit">
+
+                            <div className="scheme-benefit-icon">
+
+                              <IndianRupee
+                                size={19}
+                              />
+
+                            </div>
+
+                            <div>
+
+                              <span>
+                                KEY BENEFIT
+                              </span>
+
+                              <strong>
+                                {scheme.benefit}
+                              </strong>
+
+                            </div>
+
+                          </div>
+
+                          {/* TAGS */}
+
+                          <div className="scheme-tags">
+
+                            {scheme.category
+                              .slice(0, 3)
+                              .map(
+                                (item) => (
+
+                                  <span
+                                    key={item}
+                                  >
+                                    {item}
+                                  </span>
+
+                                )
+                              )}
+
+                            {scheme.financialSupport
+                              .slice(0, 2)
+                              .map(
+                                (item) => (
+
+                                  <span
+                                    key={item}
+                                  >
+                                    {item}
+                                  </span>
+
+                                )
+                              )}
+
+                          </div>
+
+                          {/* ELIGIBILITY */}
+
+                          <div className="scheme-eligibility-box">
+
+                            <div className="eligibility-heading">
+
+                              <FileCheck2
+                                size={17}
+                              />
+
+                              <strong>
+                                Eligibility
+                              </strong>
+
+                            </div>
+
+                            <div className="eligibility-items">
+
+                              <div>
+
+                                <MapPin
+                                  size={15}
+                                />
+
+                                <span>
+
+                                  {states.length ===
+                                  1
+                                    ? states[0]
+                                    : `${states.length} eligible states`}
+
+                                </span>
+
+                              </div>
+
+                              <div>
+
+                                <BriefcaseBusiness
+                                  size={15}
+                                />
+
+                                <span>
+
+                                  {maxIncome
+                                    ? `Income up to ₹${maxIncome.toLocaleString(
+                                        "en-IN"
+                                      )}`
+                                    : "Income limit varies"}
+
+                                </span>
+
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                        {/* ACTION BUTTONS */}
+
+                        <div className="scheme-card-actions">
+
+                          {/* VIEW DETAILS */}
+
+                          <button
+                            type="button"
+                            className="scheme-secondary-button"
+                            onClick={() =>
+                              handleViewDetails(
+                                scheme
+                              )
+                            }
+                          >
+                            View Details
+                            <ArrowRight
+                              size={16}
+                            />
+                          </button>
+
+                          {/* APPLY */}
+
+                          {scheme.applyLink &&
+                          scheme.applyLink !==
+                            "#" ? (
+
+                            <a
+                              href={
+                                scheme.applyLink
+                              }
+                              target="_blank"
+                              rel="noreferrer"
+                              className="scheme-primary-button"
+                            >
+                              Apply Now
+
+                              <ExternalLink
+                                size={15}
+                              />
+
+                            </a>
+
+                          ) : (
+
+                            <button
+                              type="button"
+                              className="scheme-primary-button"
+                              onClick={() =>
+                                alert(
+                                  "Application link will be added after official verification."
+                                )
+                              }
+                            >
+                              Apply Now
+                            </button>
+
+                          )}
+
+                        </div>
+
+                      </article>
+
+                    );
+                  }
+                )}
+
+              </div>
+
+            ) : (
+
+              /* NO RESULTS */
+
+              <div className="schemes-message">
+
+                <div className="schemes-loading-icon">
+                  🔍
+                </div>
+
+                <h2>
+                  No Matching Schemes
+                </h2>
+
+                <p>
+                  Try another keyword or
+                  category.
+                </p>
+
+                <button
+                  className="scheme-primary-button"
+                  onClick={() => {
+                    setSearchTerm("");
+                    setSelectedCategory(
+                      "All"
+                    );
+                  }}
+                >
+                  Clear Filters
+                </button>
+
+              </div>
+
+            )}
+
+          </>
+
+        )}
+
+      </main>
+
+      {/* ================= AI SECTION ================= */}
+
+      <section className="schemes-ai-section">
+
+        <div className="schemes-ai-card">
+
+          <div className="schemes-ai-icon">
+            <Sparkles size={30} />
+          </div>
+
+          <div className="schemes-ai-content">
+
+            <p className="schemes-label">
+              YOJANASATHI AI
+            </p>
+
+            <h2>
+              Not sure which scheme
+              is right for you?
+            </h2>
+
+            <p>
+              Tell us your state,
+              category, business type,
+              income and financial need.
+              Our AI matcher will identify
+              suitable schemes for you.
+            </p>
+
+            <Link
+              to="/match-scheme"
+              className="scheme-primary-button"
+            >
+              Find My Scheme
+              <ArrowRight size={17} />
+            </Link>
+
+          </div>
+
+          <div className="schemes-ai-visual">
+
+            <Brain size={72} />
+
+            <div className="ai-visual-badge">
+              AI Powered
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ================= JAN SAMARTH ================= */}
+
+      <section className="schemes-platform-section">
+
+        <div className="platform-icon">
+          <WalletCards size={30} />
+        </div>
+
+        <div className="platform-content">
+
+          <p className="schemes-label">
+            OFFICIAL PLATFORM
+          </p>
+
+          <h2>
+            Explore through JanSamarth
+          </h2>
+
+          <p>
+            Use the official JanSamarth
+            platform to explore eligible
+            credit-linked government
+            schemes.
+          </p>
+
+        </div>
+
+        <a
+          href="https://www.jansamarth.in/"
+          target="_blank"
+          rel="noreferrer"
+          className="scheme-secondary-button"
+        >
+          Visit JanSamarth
+          <ExternalLink size={16} />
+        </a>
+
+      </section>
+
+      {/* ================= TRUST ================= */}
+
+      <section className="schemes-trust-section">
+
+        <div className="trust-item">
+
+          <ShieldCheck size={28} />
 
           <div>
 
-            <ShieldCheck size={20} />
-
             <strong>
-              Use Official Government Links
+              Government-focused
             </strong>
 
             <span>
-              Always verify eligibility, documents, terms and
-              application status on the official portal before applying.
+              Discover relevant public
+              support programs.
             </span>
 
           </div>
 
+        </div>
+
+        <div className="trust-item">
+
+          <FileCheck2 size={28} />
+
+          <div>
+
+            <strong>
+              Easy Eligibility
+            </strong>
+
+            <span>
+              Understand basic eligibility
+              before applying.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div className="trust-item">
+
+          <WalletCards size={28} />
+
+          <div>
+
+            <strong>
+              Multiple Support Types
+            </strong>
+
+            <span>
+              Loans, subsidies, credit
+              and entrepreneurship support.
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ================= FOOTER ================= */}
+
+      <footer className="schemes-footer">
+
+        <div>
+
+          <strong>
+            YojanaSathi AI
+          </strong>
+
+          <p>
+            AI-powered government scheme
+            discovery platform.
+          </p>
+
+        </div>
+
+        <div className="schemes-footer-links">
 
           <Link to="/">
-            Back to YojanaSathi AI
-            <ArrowRight size={15} />
+            Home
           </Link>
 
-        </section>
+          <Link to="/match-scheme">
+            AI Matcher
+          </Link>
 
-      </main>
+          <Link to="/calculator">
+            Calculator
+          </Link>
+
+          <Link to="/partner">
+            Partner
+          </Link>
+
+        </div>
+
+      </footer>
 
     </div>
   );
 }
-
 
 export default Schemes;

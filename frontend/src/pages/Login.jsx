@@ -1,3 +1,4 @@
+
 import {
   ArrowLeft,
   Eye,
@@ -9,6 +10,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function GoogleIcon() {
   return (
@@ -40,11 +42,59 @@ function GoogleIcon() {
 }
 
 function Login() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [error, setError] = useState("");
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    setError("");
+
+    const savedUser = localStorage.getItem("yojanaUser");
+
+    if (!savedUser) {
+      setError(
+        "No account found. Please create an account first."
+      );
+      return;
+    }
+
+    try {
+      const user = JSON.parse(savedUser);
+
+      if (
+        user.email?.toLowerCase() !== email.trim().toLowerCase() ||
+        user.password !== password
+      ) {
+        setError("Invalid email or password.");
+        return;
+      }
+
+      localStorage.setItem(
+        "yojanaLoggedInUser",
+        JSON.stringify({
+          name: user.name,
+          email: user.email,
+        })
+      );
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Something went wrong. Please try again.");
+    }
+  };
+
   const handleGoogleLogin = () => {
-    // Google OAuth will be connected in the authentication/backend step.
-    console.log("Google Login clicked");
+    setError(
+      "Google login will be connected when Google OAuth is added."
+    );
   };
 
   return (
@@ -59,7 +109,6 @@ function Login() {
         <div className="login-glow glow-one"></div>
         <div className="login-glow glow-two"></div>
 
-        {/* BRAND */}
         <div className="login-brand">
 
           <div className="login-brand-icon">
@@ -68,6 +117,7 @@ function Login() {
 
           <div>
             <h2>SchemeMatch AI</h2>
+
             <p>
               Empowering Dreams • Building a Stronger India
             </p>
@@ -75,8 +125,6 @@ function Login() {
 
         </div>
 
-
-        {/* MESSAGE */}
         <div className="login-message">
 
           <span className="login-badge">
@@ -96,8 +144,6 @@ function Login() {
             one simple platform.
           </p>
 
-
-          {/* FEATURES */}
           <div className="login-points">
 
             <div>
@@ -110,7 +156,6 @@ function Login() {
               </span>
             </div>
 
-
             <div>
               <div className="point-icon">
                 <ShieldCheck size={17} />
@@ -120,7 +165,6 @@ function Login() {
                 Secure & Transparent Process
               </span>
             </div>
-
 
             <div>
               <div className="point-icon">
@@ -138,7 +182,6 @@ function Login() {
 
       </div>
 
-
       {/* =====================================================
           RIGHT SIDE
       ====================================================== */}
@@ -147,14 +190,11 @@ function Login() {
 
         <div className="login-form-wrapper">
 
-          {/* BACK TO HOME */}
-          <a href="/" className="back-home">
+          <Link to="/" className="back-home">
             <ArrowLeft size={17} />
             Back to Home
-          </a>
+          </Link>
 
-
-          {/* MOBILE LOGO */}
           <div className="mobile-logo">
 
             <div className="login-brand-icon">
@@ -167,8 +207,6 @@ function Login() {
 
           </div>
 
-
-          {/* HEADING */}
           <div className="login-form-heading">
 
             <span>
@@ -185,17 +223,13 @@ function Login() {
 
           </div>
 
-
-          {/* =================================================
-              LOGIN FORM
-          ================================================== */}
-
           <form
             className="login-form"
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={handleLogin}
           >
 
             {/* EMAIL */}
+
             <div className="input-group">
 
               <label>
@@ -210,14 +244,19 @@ function Login() {
                   type="email"
                   placeholder="Enter your email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(event) =>
+                    setEmail(event.target.value)
+                  }
+                  required
                 />
 
               </div>
 
             </div>
 
-
             {/* PASSWORD */}
+
             <div className="input-group">
 
               <div className="password-label-row">
@@ -226,12 +265,11 @@ function Login() {
                   Password
                 </label>
 
-                <a href="/forgot-password">
+                <Link to="/forgot-password">
                   Forgot Password?
-                </a>
+                </Link>
 
               </div>
-
 
               <div className="input-wrapper">
 
@@ -245,8 +283,12 @@ function Login() {
                   }
                   placeholder="Enter your password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange={(event) =>
+                    setPassword(event.target.value)
+                  }
+                  required
                 />
-
 
                 <button
                   type="button"
@@ -273,8 +315,28 @@ function Login() {
 
             </div>
 
+            {/* ERROR */}
+
+            {error && (
+              <div
+                style={{
+                  marginTop: "-6px",
+                  marginBottom: "8px",
+                  padding: "11px 13px",
+                  borderRadius: "10px",
+                  background: "#fff1f2",
+                  border: "1px solid #fecdd3",
+                  color: "#be123c",
+                  fontSize: "14px",
+                  lineHeight: "1.4",
+                }}
+              >
+                {error}
+              </div>
+            )}
 
             {/* REMEMBER ME */}
+
             <div className="remember-row">
 
               <label className="remember-label">
@@ -289,8 +351,8 @@ function Login() {
 
             </div>
 
-
             {/* LOGIN BUTTON */}
+
             <button
               type="submit"
               className="login-submit-btn"
@@ -298,10 +360,7 @@ function Login() {
               Login to SchemeMatch
             </button>
 
-
-            {/* =================================================
-                DIVIDER
-            ================================================== */}
+            {/* DIVIDER */}
 
             <div className="login-divider">
 
@@ -315,10 +374,7 @@ function Login() {
 
             </div>
 
-
-            {/* =================================================
-                GOOGLE LOGIN
-            ================================================== */}
+            {/* GOOGLE LOGIN */}
 
             <button
               type="button"
@@ -334,24 +390,22 @@ function Login() {
 
             </button>
 
-
             {/* REGISTER */}
+
             <div className="register-text">
 
               <span>
                 Don't have an account?
               </span>
 
-              <a href="/register">
+              <Link to="/register">
                 Create an account
-              </a>
+              </Link>
 
             </div>
 
           </form>
 
-
-          {/* SECURITY */}
           <div className="login-security">
 
             <ShieldCheck size={16} />
@@ -371,3 +425,4 @@ function Login() {
 }
 
 export default Login;
+

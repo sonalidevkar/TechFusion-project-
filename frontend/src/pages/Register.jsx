@@ -1,3 +1,4 @@
+
 import {
   ArrowLeft,
   Eye,
@@ -12,7 +13,7 @@ import {
 } from "lucide-react";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function GoogleIcon() {
   return (
@@ -33,7 +34,7 @@ function GoogleIcon() {
       />
       <path
         fill="#4CAF50"
-        d="M24 44c5.441 0 10.278-1.987 13.982-5.232l-6.447-5.465C29.472 34.488 26.883 36 24 36c-5.202 0-9.617-3.317-11.283-7.946l-6.522 5.025C9.586 39.556 16.227 44 24 44z"
+        d="M24 44c5.441 0 10.278-1.987 13.982-5.232 0 0-6.447-5.465-6.447-5.465C29.472 34.488 26.883 36 24 36c-5.202 0-9.617-3.317-11.283-7.946l-6.522 5.025C9.586 39.556 16.227 44 24 44z"
       />
       <path
         fill="#1976D2"
@@ -44,17 +45,92 @@ function GoogleIcon() {
 }
 
 function Register() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [profile, setProfile] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [error, setError] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("Registration form submitted");
+    setError("");
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedMobile = mobile.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMobile) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must contain at least 6 characters.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Password and confirm password do not match.");
+      return;
+    }
+
+    const existingUser = localStorage.getItem("yojanaUser");
+
+    if (existingUser) {
+      try {
+        const user = JSON.parse(existingUser);
+
+        if (
+          user.email?.toLowerCase() === trimmedEmail
+        ) {
+          setError(
+            "An account with this email already exists. Please login."
+          );
+          return;
+        }
+      } catch (error) {
+        console.error("Existing user data error:", error);
+      }
+    }
+
+    const newUser = {
+      name: trimmedName,
+      email: trimmedEmail,
+      mobile: trimmedMobile,
+      profile,
+      password,
+    };
+
+    localStorage.setItem(
+      "yojanaUser",
+      JSON.stringify(newUser)
+    );
+
+    localStorage.setItem(
+      "yojanaLoggedInUser",
+      JSON.stringify({
+        name: newUser.name,
+        email: newUser.email,
+        profile: newUser.profile,
+      })
+    );
+
+    navigate("/dashboard");
   };
 
   const handleGoogleRegister = () => {
-    console.log("Google registration clicked");
+    setError(
+      "Google registration will be connected when Google OAuth is added."
+    );
   };
 
   return (
@@ -67,9 +143,8 @@ function Register() {
       <div className="register-visual">
 
         <div className="register-glow register-glow-one"></div>
-        <div className="register-glow register-glow-two"></div>
 
-        {/* BRAND */}
+        <div className="register-glow register-glow-two"></div>
 
         <Link to="/" className="register-brand">
 
@@ -87,9 +162,6 @@ function Register() {
 
         </Link>
 
-
-        {/* MAIN MESSAGE */}
-
         <div className="register-message">
 
           <span className="register-badge">
@@ -100,7 +172,6 @@ function Register() {
 
           </span>
 
-
           <h1>
 
             Start Your
@@ -110,15 +181,11 @@ function Register() {
 
           </h1>
 
-
           <p>
             Create your free account and get personalized access
             to government schemes, eligibility guidance, financial
             support and application tracking.
           </p>
-
-
-          {/* BENEFITS */}
 
           <div className="register-benefits">
 
@@ -142,7 +209,6 @@ function Register() {
 
             </div>
 
-
             <div>
 
               <div className="register-benefit-icon">
@@ -162,7 +228,6 @@ function Register() {
               </div>
 
             </div>
-
 
             <div>
 
@@ -190,7 +255,6 @@ function Register() {
 
       </div>
 
-
       {/* =====================================================
           RIGHT SIDE
       ====================================================== */}
@@ -198,8 +262,6 @@ function Register() {
       <div className="register-form-section">
 
         <div className="register-form-wrapper">
-
-          {/* BACK */}
 
           <Link
             to="/"
@@ -212,9 +274,6 @@ function Register() {
 
           </Link>
 
-
-          {/* MOBILE BRAND */}
-
           <div className="register-mobile-logo">
 
             <div className="register-brand-icon">
@@ -226,9 +285,6 @@ function Register() {
             </strong>
 
           </div>
-
-
-          {/* HEADING */}
 
           <div className="register-heading">
 
@@ -245,9 +301,6 @@ function Register() {
             </p>
 
           </div>
-
-
-          {/* FORM */}
 
           <form
             className="register-form"
@@ -270,13 +323,16 @@ function Register() {
                   type="text"
                   placeholder="Enter your full name"
                   autoComplete="name"
+                  value={name}
+                  onChange={(event) =>
+                    setName(event.target.value)
+                  }
                   required
                 />
 
               </div>
 
             </div>
-
 
             {/* EMAIL */}
 
@@ -294,13 +350,16 @@ function Register() {
                   type="email"
                   placeholder="Enter your email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(event) =>
+                    setEmail(event.target.value)
+                  }
                   required
                 />
 
               </div>
 
             </div>
-
 
             {/* MOBILE */}
 
@@ -318,13 +377,16 @@ function Register() {
                   type="tel"
                   placeholder="Enter your mobile number"
                   autoComplete="tel"
+                  value={mobile}
+                  onChange={(event) =>
+                    setMobile(event.target.value)
+                  }
                   required
                 />
 
               </div>
 
             </div>
-
 
             {/* USER TYPE */}
 
@@ -339,7 +401,10 @@ function Register() {
                 <BriefcaseBusiness size={17} />
 
                 <select
-                  defaultValue=""
+                  value={profile}
+                  onChange={(event) =>
+                    setProfile(event.target.value)
+                  }
                   required
                 >
 
@@ -376,7 +441,6 @@ function Register() {
 
             </div>
 
-
             {/* PASSWORD */}
 
             <div className="register-input-group">
@@ -397,6 +461,10 @@ function Register() {
                   }
                   placeholder="Create a password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(event) =>
+                    setPassword(event.target.value)
+                  }
                   required
                 />
 
@@ -420,7 +488,6 @@ function Register() {
 
             </div>
 
-
             {/* CONFIRM PASSWORD */}
 
             <div className="register-input-group">
@@ -441,6 +508,10 @@ function Register() {
                   }
                   placeholder="Confirm your password"
                   autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(event) =>
+                    setConfirmPassword(event.target.value)
+                  }
                   required
                 />
 
@@ -466,6 +537,23 @@ function Register() {
 
             </div>
 
+            {/* ERROR */}
+
+            {error && (
+              <div
+                style={{
+                  padding: "11px 13px",
+                  borderRadius: "10px",
+                  background: "#fff1f2",
+                  border: "1px solid #fecdd3",
+                  color: "#be123c",
+                  fontSize: "14px",
+                  lineHeight: "1.4",
+                }}
+              >
+                {error}
+              </div>
+            )}
 
             {/* TERMS */}
 
@@ -478,17 +566,19 @@ function Register() {
 
               <span>
                 I agree to the{" "}
-                <a href="/terms">
+
+                <Link to="/terms">
                   Terms & Conditions
-                </a>{" "}
+                </Link>{" "}
+
                 and{" "}
-                <a href="/privacy">
+
+                <Link to="/privacy">
                   Privacy Policy
-                </a>.
+                </Link>.
               </span>
 
             </label>
-
 
             {/* CREATE ACCOUNT */}
 
@@ -503,7 +593,6 @@ function Register() {
 
             </button>
 
-
             {/* DIVIDER */}
 
             <div className="register-divider">
@@ -517,7 +606,6 @@ function Register() {
               <span></span>
 
             </div>
-
 
             {/* GOOGLE */}
 
@@ -535,7 +623,6 @@ function Register() {
 
             </button>
 
-
             {/* LOGIN */}
 
             <div className="register-login-text">
@@ -551,9 +638,6 @@ function Register() {
             </div>
 
           </form>
-
-
-          {/* SECURITY */}
 
           <div className="register-security">
 
@@ -587,29 +671,11 @@ function BrainIcon() {
 
 function FileIcon() {
   return (
-    <FileCheckIcon />
-  );
-}
-
-function FileCheckIcon() {
-  return (
     <ShieldCheck size={17} />
   );
 }
 
 function TrendingIcon() {
-  return (
-    <TrendingSmall />
-  );
-}
-
-function TrendingSmall() {
-  return (
-    <TrendingUpIcon />
-  );
-}
-
-function TrendingUpIcon() {
   return (
     <Sparkles size={17} />
   );
@@ -624,3 +690,4 @@ function ArrowRightIcon() {
 }
 
 export default Register;
+

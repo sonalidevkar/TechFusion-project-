@@ -56,6 +56,10 @@ function Home() {
               Schemes
             </Link>
 
+            <Link to="/match-scheme">
+              AI Match
+            </Link>
+
             <Link to="/calculator">
               Calculator
             </Link>
@@ -139,7 +143,7 @@ function Home() {
               <div className="hero-buttons">
 
                 <Link
-                  to="/schemes"
+                  to="/match-scheme"
                   className="primary-btn"
                 >
 
@@ -306,8 +310,10 @@ function Home() {
                 </div>
 
 
+                {/* CONNECTED TO AI MATCH */}
+
                 <Link
-                  to="/schemes"
+                  to="/match-scheme"
                   className="recommendation-btn"
                 >
 
@@ -449,8 +455,10 @@ function Home() {
           <div className="offer-grid">
 
 
+            {/* AI MATCH */}
+
             <Link
-              to="/schemes"
+              to="/match-scheme"
               className="offer-card purple"
             >
 
@@ -472,12 +480,14 @@ function Home() {
               </p>
 
               <span className="card-link">
-                Explore Schemes
+                Find Your Match
                 <ChevronRight size={16} />
               </span>
 
             </Link>
 
+
+            {/* CALCULATOR */}
 
             <Link
               to="/calculator"
@@ -509,6 +519,8 @@ function Home() {
             </Link>
 
 
+            {/* PARTNER */}
+
             <Link
               to="/partner"
               className="offer-card pink"
@@ -539,6 +551,8 @@ function Home() {
             </Link>
 
 
+            {/* TRACK */}
+
             <Link
               to="/track"
               className="offer-card blue"
@@ -568,6 +582,8 @@ function Home() {
 
             </Link>
 
+
+            {/* FINANCIAL LITERACY */}
 
             <Link
               to="/literacy"
@@ -1094,7 +1110,7 @@ function Home() {
             <div className="cta-buttons">
 
               <Link
-                to="/schemes"
+                to="/match-scheme"
                 className="cta-primary"
               >
 
@@ -1175,6 +1191,10 @@ function Home() {
               Find a Partner
             </Link>
 
+            <Link to="/match-scheme">
+              AI Scheme Matcher
+            </Link>
+
           </div>
 
 
@@ -1211,6 +1231,10 @@ function Home() {
 
             <Link to="/register">
               Register
+            </Link>
+
+            <Link to="/dashboard">
+              Dashboard
             </Link>
 
           </div>
