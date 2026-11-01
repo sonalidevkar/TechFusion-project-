@@ -1,0 +1,718 @@
+
+[
+  {
+    "id": 1,
+    "name": "Stand-Up India Scheme",
+    "shortName": "Stand-Up India",
+    "ministry": "Ministry of Finance",
+    "category": ["SC", "ST", "Women", "Entrepreneurship"],
+    "tags": ["Business", "Startup", "Loan"],
+    "businessType": ["Manufacturing", "Services", "Trading"],
+    "financialSupport": ["Business loans", "Entrepreneurship support"],
+    "description": "Supports eligible SC/ST and women entrepreneurs in establishing new enterprises.",
+    "benefit": "Bank loans from ₹10 lakh to ₹1 crore, subject to current scheme conditions.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Eligibility depends on applicant category, ownership, business type and current guidelines."
+    },
+    "documents": ["Aadhaar Card", "PAN Card", "Business Plan", "Bank Details", "Category Certificate if applicable"],
+    "status": "Verify current availability on the official portal.",
+    "officialLink": "https://www.standupmitra.in/",
+    "applyLink": "https://www.standupmitra.in/",
+    "translations": {
+      "mr": {
+        "name": "स्टँड-अप इंडिया योजना",
+        "description": "अनुसूचित जाती, जमाती आणि महिला उद्योजकांना नवीन व्यवसाय सुरू करण्यासाठी सहाय्य.",
+        "benefit": "पात्रतेनुसार ₹१० लाख ते ₹१ कोटीपर्यंत बँक कर्ज मिळू शकते.",
+        "eligibilityNotes": "अर्जदाराचा प्रवर्ग, व्यवसाय, मालकी आणि सध्याच्या नियमांनुसार पात्रता ठरते."
+      },
+      "hi": {
+        "name": "स्टैंड-अप इंडिया योजना",
+        "description": "अनुसूचित जाति, जनजाति और महिला उद्यमियों को नया व्यवसाय शुरू करने में सहायता।",
+        "benefit": "पात्रता के अनुसार ₹10 लाख से ₹1 करोड़ तक बैंक ऋण मिल सकता है।",
+        "eligibilityNotes": "आवेदक की श्रेणी, व्यवसाय, स्वामित्व और वर्तमान नियमों पर पात्रता निर्भर करती है।"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "Prime Minister's Employment Generation Programme",
+    "shortName": "PMEGP",
+    "ministry": "Ministry of MSME",
+    "category": ["General", "SC", "ST", "OBC", "Women"],
+    "tags": ["Employment", "MSME", "Subsidy"],
+    "businessType": ["Manufacturing", "Services"],
+    "financialSupport": ["Bank finance", "Margin-money subsidy"],
+    "description": "Supports eligible entrepreneurs in establishing new micro-enterprises.",
+    "benefit": "Bank finance and margin-money subsidy for eligible projects.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Applicants must satisfy the current project, age and other eligibility conditions."
+    },
+    "documents": ["Aadhaar Card", "Project Report", "Education Certificate if required", "Bank Details"],
+    "officialLink": "https://www.kviconline.gov.in/pmegpeportal/",
+    "applyLink": "https://www.kviconline.gov.in/pmegpeportal/",
+    "translations": {
+      "mr": {
+        "name": "पंतप्रधान रोजगार निर्मिती कार्यक्रम",
+        "description": "नवीन सूक्ष्म उद्योग सुरू करणाऱ्या पात्र उद्योजकांना आर्थिक सहाय्य.",
+        "benefit": "पात्र प्रकल्पांसाठी बँक वित्तपुरवठा आणि मार्जिन मनी अनुदान.",
+        "eligibilityNotes": "वय, प्रकल्पाचा प्रकार आणि सध्याच्या नियमांनुसार पात्रता ठरते."
+      },
+      "hi": {
+        "name": "प्रधानमंत्री रोजगार सृजन कार्यक्रम",
+        "description": "नए सूक्ष्म उद्यम स्थापित करने वाले पात्र उद्यमियों को वित्तीय सहायता।",
+        "benefit": "पात्र परियोजनाओं के लिए बैंक वित्त और मार्जिन मनी सब्सिडी।",
+        "eligibilityNotes": "आयु, परियोजना और वर्तमान नियमों के अनुसार पात्रता निर्धारित होती है।"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": "Pradhan Mantri MUDRA Yojana",
+    "shortName": "PMMY",
+    "ministry": "Ministry of Finance",
+    "category": ["General", "Women", "SC", "ST", "OBC"],
+    "tags": ["Loan", "Business", "MSME"],
+    "businessType": ["Manufacturing", "Services", "Trading"],
+    "financialSupport": ["Micro-enterprise loans"],
+    "description": "Provides institutional credit support for eligible micro-enterprises.",
+    "benefit": "Loan categories include Shishu, Kishor, Tarun and Tarun Plus under applicable rules.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Available to eligible income-generating micro-enterprises, subject to lender assessment."
+    },
+    "documents": ["Aadhaar Card", "PAN Card", "Business Details", "Bank Documents"],
+    "officialLink": "https://www.mudra.org.in/",
+    "applyLink": "https://www.mudra.org.in/",
+    "translations": {
+      "mr": {
+        "name": "प्रधानमंत्री मुद्रा योजना",
+        "description": "सूक्ष्म व्यवसायांना व्यवसायवृद्धीसाठी संस्थात्मक कर्ज सहाय्य.",
+        "benefit": "शिशु, किशोर, तरुण आणि तरुण प्लस या कर्ज श्रेणी उपलब्ध.",
+        "eligibilityNotes": "व्यवसायाची पात्रता आणि बँकेच्या नियमांनुसार कर्ज मंजूर होते."
+      },
+      "hi": {
+        "name": "प्रधानमंत्री मुद्रा योजना",
+        "description": "सूक्ष्म व्यवसायों को व्यवसाय विकास के लिए ऋण सहायता।",
+        "benefit": "शिशु, किशोर, तरुण और तरुण प्लस ऋण श्रेणियाँ उपलब्ध।",
+        "eligibilityNotes": "व्यवसाय की पात्रता और बैंक के नियमों के अनुसार ऋण स्वीकृत होता है।"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "name": "National SC-ST Hub",
+    "shortName": "NSSH",
+    "ministry": "Ministry of MSME",
+    "category": ["SC", "ST"],
+    "tags": ["Entrepreneurship", "Training", "Business"],
+    "businessType": ["Manufacturing", "Services", "Trading"],
+    "financialSupport": ["Training", "Market access", "Business development"],
+    "description": "Supports SC/ST entrepreneurs through training, market access and business development initiatives.",
+    "benefit": "Training, vendor development and procurement-related assistance under applicable components.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Applicants must meet applicable SC/ST entrepreneur and programme requirements."
+    },
+    "documents": ["Category Certificate", "Aadhaar Card", "Business Registration", "Bank Details"],
+    "officialLink": "https://www.scsthub.in/",
+    "applyLink": "https://www.scsthub.in/",
+    "translations": {
+      "mr": {
+        "name": "राष्ट्रीय अनुसूचित जाती-जमाती हब",
+        "description": "SC/ST उद्योजकांना प्रशिक्षण, बाजारपेठ आणि व्यवसायवृद्धीसाठी सहाय्य.",
+        "benefit": "प्रशिक्षण, विक्रेता विकास आणि सरकारी खरेदीसंबंधी मदत.",
+        "eligibilityNotes": "SC/ST उद्योजकांसाठी संबंधित कार्यक्रमांच्या अटी लागू."
+      },
+      "hi": {
+        "name": "राष्ट्रीय अनुसूचित जाति-जनजाति हब",
+        "description": "SC/ST उद्यमियों को प्रशिक्षण, बाजार और व्यवसाय विकास में सहायता।",
+        "benefit": "प्रशिक्षण, विक्रेता विकास और सरकारी खरीद संबंधी सहायता।",
+        "eligibilityNotes": "SC/ST उद्यमियों के लिए संबंधित कार्यक्रमों की शर्तें लागू।"
+      }
+    }
+  },
+  {
+    "id": 5,
+    "name": "Pradhan Mantri Formalisation of Micro Food Processing Enterprises",
+    "shortName": "PMFME",
+    "ministry": "Ministry of Food Processing Industries",
+    "category": ["General", "Women", "SC", "ST"],
+    "tags": ["Food Processing", "MSME", "Subsidy"],
+    "businessType": ["Food Processing", "Manufacturing"],
+    "financialSupport": ["Credit-linked subsidy", "Enterprise support"],
+    "description": "Supports eligible micro food-processing enterprises with formalisation and upgrading.",
+    "benefit": "Credit-linked subsidy and related assistance under eligible scheme components.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Eligibility depends on the food-processing activity and programme component."
+    },
+    "documents": ["Aadhaar Card", "Business Details", "Project Report", "Bank Documents"],
+    "officialLink": "https://pmfme.mofpi.gov.in/",
+    "applyLink": "https://pmfme.mofpi.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "पीएम सूक्ष्म अन्न प्रक्रिया उद्योग योजना",
+        "description": "सूक्ष्म अन्नप्रक्रिया उद्योगांचे आधुनिकीकरण आणि औपचारिकीकरणासाठी मदत.",
+        "benefit": "पात्र उद्योगांसाठी कर्जाशी जोडलेले अनुदान आणि इतर सहाय्य.",
+        "eligibilityNotes": "अन्नप्रक्रिया व्यवसाय आणि संबंधित घटकानुसार पात्रता ठरते."
+      },
+      "hi": {
+        "name": "पीएम सूक्ष्म खाद्य प्रसंस्करण उद्यम योजना",
+        "description": "सूक्ष्म खाद्य प्रसंस्करण उद्यमों को आधुनिक बनाने और औपचारिक करने में सहायता।",
+        "benefit": "पात्र उद्यमों के लिए ऋण-संबद्ध सब्सिडी और अन्य सहायता।",
+        "eligibilityNotes": "खाद्य प्रसंस्करण गतिविधि और कार्यक्रम के अनुसार पात्रता तय होती है।"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "name": "Credit Guarantee Fund Trust for Micro and Small Enterprises",
+    "shortName": "CGTMSE",
+    "ministry": "Ministry of MSME",
+    "category": ["General", "Women", "SC", "ST"],
+    "tags": ["MSME", "Credit", "Guarantee"],
+    "businessType": ["Manufacturing", "Services"],
+    "financialSupport": ["Credit guarantee coverage"],
+    "description": "Provides credit-guarantee coverage to eligible lenders for qualifying MSME credit facilities.",
+    "benefit": "Can help eligible businesses obtain credit without conventional collateral under applicable rules.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Coverage depends on the enterprise, lending institution and current guarantee rules."
+    },
+    "documents": ["Business Registration", "Loan Application", "Financial Statements", "Bank Documents"],
+    "officialLink": "https://www.cgtmse.in/",
+    "applyLink": "https://www.cgtmse.in/",
+    "translations": {
+      "mr": {
+        "name": "सूक्ष्म व लघुउद्योग कर्ज हमी निधी",
+        "description": "पात्र सूक्ष्म व लघुउद्योगांच्या कर्जासाठी बँकांना हमी संरक्षण.",
+        "benefit": "नियमांनुसार पारंपरिक तारणाशिवाय कर्ज मिळण्यास मदत.",
+        "eligibilityNotes": "उद्योग, बँक आणि कर्ज हमीच्या नियमांनुसार पात्रता ठरते."
+      },
+      "hi": {
+        "name": "सूक्ष्म एवं लघु उद्यम ऋण गारंटी निधि",
+        "description": "पात्र सूक्ष्म और लघु उद्यमों के ऋण के लिए गारंटी सहायता।",
+        "benefit": "नियमों के अनुसार पारंपरिक गिरवी के बिना ऋण प्राप्त करने में मदद।",
+        "eligibilityNotes": "उद्यम, बैंक और गारंटी नियमों के अनुसार पात्रता निर्धारित होती है।"
+      }
+    }
+  },
+  {
+    "id": 7,
+    "name": "Startup India",
+    "shortName": "Startup India",
+    "ministry": "Department for Promotion of Industry and Internal Trade",
+    "category": ["General", "Women", "SC", "ST"],
+    "tags": ["Startup", "Innovation", "Entrepreneurship"],
+    "businessType": ["Technology", "Manufacturing", "Services"],
+    "financialSupport": ["Startup resources", "Programme access"],
+    "description": "A national initiative supporting startups through recognition, learning and ecosystem connections.",
+    "benefit": "Access to eligible startup programmes, resources and recognition-related benefits.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Specific benefits may require DPIIT recognition and additional eligibility."
+    },
+    "documents": ["Business Registration", "Founder Details", "Business Description"],
+    "officialLink": "https://www.startupindia.gov.in/",
+    "applyLink": "https://www.startupindia.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "स्टार्टअप इंडिया",
+        "description": "नवीन स्टार्टअपसाठी मान्यता, शिक्षण, मार्गदर्शन आणि संपर्काचे व्यासपीठ.",
+        "benefit": "पात्र स्टार्टअपना विविध कार्यक्रम आणि संसाधनांचा लाभ.",
+        "eligibilityNotes": "विशिष्ट लाभांसाठी DPIIT मान्यता आणि इतर अटी लागू होऊ शकतात."
+      },
+      "hi": {
+        "name": "स्टार्टअप इंडिया",
+        "description": "नए स्टार्टअप के लिए मान्यता, शिक्षा, मार्गदर्शन और संपर्क का मंच।",
+        "benefit": "पात्र स्टार्टअप को विभिन्न कार्यक्रमों और संसाधनों का लाभ।",
+        "eligibilityNotes": "विशिष्ट लाभों के लिए DPIIT मान्यता और अन्य शर्तें लागू हो सकती हैं।"
+      }
+    }
+  },
+  {
+    "id": 8,
+    "name": "Women Entrepreneurship Support and Resources",
+    "shortName": "Women Entrepreneurship",
+    "ministry": "Various Government Departments",
+    "category": ["Women"],
+    "tags": ["Women", "Entrepreneurship", "Business"],
+    "businessType": ["Manufacturing", "Services", "Trading"],
+    "financialSupport": ["Programme-dependent loans", "Training", "Business support"],
+    "description": "A discovery resource for government-backed loan, training and business-support programmes for women.",
+    "benefit": "Benefits depend on the specific programme and applicant eligibility.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "This is a resource listing, not one individual benefit scheme."
+    },
+    "documents": ["Aadhaar Card", "Business Documents", "Programme-specific Documents"],
+    "officialLink": "https://www.jansamarth.in/",
+    "applyLink": "https://www.jansamarth.in/",
+    "translations": {
+      "mr": {
+        "name": "महिला उद्योजकांसाठी सहाय्य व संसाधने",
+        "description": "महिलांसाठी विविध कर्ज, प्रशिक्षण आणि व्यवसाय सहाय्य कार्यक्रम शोधण्यासाठी मार्गदर्शन.",
+        "benefit": "लाभ संबंधित कार्यक्रमाच्या अटी आणि पात्रतेनुसार ठरतात.",
+        "eligibilityNotes": "ही स्वतंत्र अनुदान योजना नसून विविध कार्यक्रमांची माहिती देणारा पर्याय आहे."
+      },
+      "hi": {
+        "name": "महिला उद्यमिता सहायता और संसाधन",
+        "description": "महिलाओं के लिए ऋण, प्रशिक्षण और व्यवसाय सहायता कार्यक्रम खोजने में मार्गदर्शन।",
+        "benefit": "लाभ संबंधित कार्यक्रम की शर्तों और पात्रता पर निर्भर हैं।",
+        "eligibilityNotes": "यह एक स्वतंत्र नकद लाभ योजना नहीं, बल्कि कार्यक्रमों की जानकारी है।"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "name": "Pradhan Mantri Kisan Samman Nidhi",
+    "shortName": "PM-KISAN",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "category": ["Farmers"],
+    "tags": ["Agriculture", "Farmers", "Income Support"],
+    "businessType": ["Agriculture"],
+    "financialSupport": ["₹6,000 per year for eligible beneficiaries"],
+    "description": "Provides income support to eligible landholding farmer families.",
+    "benefit": "Eligible beneficiaries may receive ₹6,000 per year in instalments.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Landholding, exclusions, identity verification and current programme rules apply."
+    },
+    "documents": ["Aadhaar Card", "Land Records", "Bank Account Details"],
+    "officialLink": "https://pmkisan.gov.in/",
+    "applyLink": "https://pmkisan.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "प्रधानमंत्री किसान सन्मान निधी",
+        "description": "पात्र जमीनधारक शेतकरी कुटुंबांना उत्पन्न सहाय्य.",
+        "benefit": "पात्र शेतकऱ्यांना वर्षाला ₹६,००० हप्त्यांमध्ये मिळू शकतात.",
+        "eligibilityNotes": "जमिनीची नोंद, अपात्रतेचे निकष आणि पडताळणीचे नियम लागू."
+      },
+      "hi": {
+        "name": "प्रधानमंत्री किसान सम्मान निधि",
+        "description": "पात्र भूमिधारक किसान परिवारों को आय सहायता।",
+        "benefit": "पात्र किसानों को सालाना ₹6,000 किस्तों में मिल सकते हैं।",
+        "eligibilityNotes": "भूमि रिकॉर्ड, अपात्रता नियम और सत्यापन आवश्यक हैं।"
+      }
+    }
+  },
+  {
+    "id": 10,
+    "name": "Pradhan Mantri Fasal Bima Yojana",
+    "shortName": "PMFBY",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "category": ["Farmers"],
+    "tags": ["Crop Insurance", "Agriculture"],
+    "businessType": ["Agriculture"],
+    "financialSupport": ["Crop insurance coverage"],
+    "description": "Provides crop insurance to eligible farmers against specified crop losses and risks.",
+    "benefit": "Insurance coverage depends on notified crops, area, season and scheme conditions.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Only applicable notified crops, areas and seasons qualify."
+    },
+    "documents": ["Aadhaar Card", "Land or Cultivation Records", "Bank Details", "Crop Details"],
+    "officialLink": "https://pmfby.gov.in/",
+    "applyLink": "https://pmfby.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "प्रधानमंत्री पीक विमा योजना",
+        "description": "विशिष्ट पीक नुकसानीविरुद्ध पात्र शेतकऱ्यांना विमा संरक्षण.",
+        "benefit": "विमा संरक्षण पीक, क्षेत्र, हंगाम आणि नियमांनुसार ठरते.",
+        "eligibilityNotes": "अधिसूचित पीक, क्षेत्र आणि हंगामाच्या अटी लागू."
+      },
+      "hi": {
+        "name": "प्रधानमंत्री फसल बीमा योजना",
+        "description": "विशिष्ट फसल नुकसान के विरुद्ध पात्र किसानों को बीमा सुरक्षा।",
+        "benefit": "बीमा कवरेज फसल, क्षेत्र, मौसम और नियमों के अनुसार तय होता है।",
+        "eligibilityNotes": "अधिसूचित फसल, क्षेत्र और मौसम की शर्तें लागू।"
+      }
+    }
+  },
+  {
+    "id": 11,
+    "name": "Kisan Credit Card",
+    "shortName": "KCC",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "category": ["Farmers"],
+    "tags": ["Agriculture", "Credit", "Farmers"],
+    "businessType": ["Agriculture", "Allied Activities"],
+    "financialSupport": ["Agricultural credit"],
+    "description": "Provides eligible farmers with institutional credit for cultivation and certain allied activities.",
+    "benefit": "Credit limits and interest terms depend on the lender and current guidelines.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Eligibility is assessed by the participating bank under applicable KCC rules."
+    },
+    "documents": ["Aadhaar Card", "Land or Activity Records", "Bank Documents"],
+    "officialLink": "https://www.myscheme.gov.in/schemes/kcc",
+    "applyLink": "https://www.myscheme.gov.in/schemes/kcc",
+    "translations": {
+      "mr": {
+        "name": "किसान क्रेडिट कार्ड",
+        "description": "शेती आणि संबंधित पात्र व्यवसायांसाठी शेतकऱ्यांना कर्ज सुविधा.",
+        "benefit": "कर्जमर्यादा आणि व्याजदर बँक व नियमांनुसार ठरतात.",
+        "eligibilityNotes": "संबंधित बँकेच्या KCC नियमांनुसार पात्रता तपासली जाते."
+      },
+      "hi": {
+        "name": "किसान क्रेडिट कार्ड",
+        "description": "खेती और संबंधित पात्र गतिविधियों के लिए किसानों को ऋण सुविधा।",
+        "benefit": "ऋण सीमा और ब्याज बैंक तथा नियमों के अनुसार तय होते हैं।",
+        "eligibilityNotes": "संबंधित बैंक के KCC नियमों के अनुसार पात्रता जाँची जाती है।"
+      }
+    }
+  },
+  {
+    "id": 12,
+    "name": "Soil Health Card Scheme",
+    "shortName": "Soil Health Card",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "category": ["Farmers"],
+    "tags": ["Soil", "Agriculture", "Farming"],
+    "businessType": ["Agriculture"],
+    "financialSupport": ["Soil testing information", "Nutrient recommendations"],
+    "description": "Helps farmers understand soil nutrient status and recommended fertilizer use.",
+    "benefit": "Soil test results and recommendations help improve crop and nutrient management.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Access depends on available soil-testing services and programme procedures."
+    },
+    "documents": ["Farmer Details", "Land or Soil Sample Information"],
+    "officialLink": "https://soilhealth.dac.gov.in/",
+    "applyLink": "https://soilhealth.dac.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "मृदा आरोग्य पत्रिका योजना",
+        "description": "मातीतील पोषकतत्त्वे आणि खतवापराबाबत शेतकऱ्यांना मार्गदर्शन.",
+        "benefit": "माती तपासणी अहवाल आणि शिफारसींमुळे पीक नियोजनास मदत.",
+        "eligibilityNotes": "स्थानिक माती तपासणी सेवा आणि कार्यक्रमाची प्रक्रिया लागू."
+      },
+      "hi": {
+        "name": "मृदा स्वास्थ्य कार्ड योजना",
+        "description": "मिट्टी के पोषक तत्व और उर्वरक उपयोग के बारे में किसानों को मार्गदर्शन।",
+        "benefit": "मिट्टी जाँच रिपोर्ट और सुझाव फसल प्रबंधन में मदद करते हैं।",
+        "eligibilityNotes": "स्थानीय मिट्टी परीक्षण सेवाओं और कार्यक्रम की प्रक्रिया के अनुसार सुविधा मिलती है।"
+      }
+    }
+  },
+  {
+    "id": 13,
+    "name": "National Means-cum-Merit Scholarship Scheme",
+    "shortName": "NMMSS",
+    "ministry": "Ministry of Education",
+    "category": ["Students"],
+    "tags": ["Education", "Scholarship"],
+    "businessType": ["Education"],
+    "financialSupport": ["Scholarship"],
+    "description": "Provides scholarships to eligible meritorious students from economically weaker backgrounds.",
+    "benefit": "Scholarship benefits are subject to current selection and renewal guidelines.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Academic, income, school-type and selection-test requirements apply."
+    },
+    "documents": ["Student Identity", "Income Certificate", "School Records", "Bank Details"],
+    "officialLink": "https://www.education.gov.in/",
+    "applyLink": "https://scholarships.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "राष्ट्रीय आर्थिक दुर्बल गुणवंत विद्यार्थी शिष्यवृत्ती",
+        "description": "आर्थिकदृष्ट्या दुर्बल गुणवंत विद्यार्थ्यांना शिक्षणासाठी शिष्यवृत्ती.",
+        "benefit": "निवड आणि नूतनीकरणाच्या नियमांनुसार शिष्यवृत्ती मिळू शकते.",
+        "eligibilityNotes": "गुण, उत्पन्न, शाळेचा प्रकार आणि निवड परीक्षेच्या अटी लागू."
+      },
+      "hi": {
+        "name": "राष्ट्रीय साधन-सह-योग्यता छात्रवृत्ति",
+        "description": "आर्थिक रूप से कमजोर मेधावी विद्यार्थियों को शिक्षा हेतु छात्रवृत्ति।",
+        "benefit": "चयन और नवीनीकरण के नियमों के अनुसार छात्रवृत्ति मिल सकती है।",
+        "eligibilityNotes": "अंक, आय, विद्यालय और चयन परीक्षा की शर्तें लागू।"
+      }
+    }
+  },
+  {
+    "id": 14,
+    "name": "Sukanya Samriddhi Yojana",
+    "shortName": "SSY",
+    "ministry": "Ministry of Finance",
+    "category": ["Women", "Girls"],
+    "tags": ["Savings", "Girls", "Education"],
+    "businessType": ["Savings"],
+    "financialSupport": ["Interest-bearing savings account"],
+    "description": "A government-backed long-term savings scheme for an eligible girl child.",
+    "benefit": "Savings account with regulated deposits, interest, maturity and withdrawal conditions.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Girl-child age, account opening and deposit rules apply."
+    },
+    "documents": ["Girl Child Birth Certificate", "Guardian Identity", "Address Proof"],
+    "officialLink": "https://www.indiapost.gov.in/",
+    "applyLink": "https://www.indiapost.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "सुकन्या समृद्धी योजना",
+        "description": "मुलीच्या भविष्यासाठी सरकारी पाठबळ असलेली दीर्घकालीन बचत योजना.",
+        "benefit": "ठेव, व्याज, मुदतपूर्ती आणि पैसे काढण्याचे नियमानुसार लाभ.",
+        "eligibilityNotes": "मुलीचे वय, खाते उघडणे आणि ठेव यांचे नियम लागू."
+      },
+      "hi": {
+        "name": "सुकन्या समृद्धि योजना",
+        "description": "बालिका के भविष्य के लिए सरकार समर्थित दीर्घकालीन बचत योजना।",
+        "benefit": "जमा, ब्याज, परिपक्वता और निकासी के नियमों के अनुसार लाभ।",
+        "eligibilityNotes": "बालिका की आयु, खाता खोलने और जमा करने के नियम लागू।"
+      }
+    }
+  },
+  {
+    "id": 15,
+    "name": "Beti Bachao Beti Padhao",
+    "shortName": "BBBP",
+    "ministry": "Ministry of Women and Child Development",
+    "category": ["Women", "Girls"],
+    "tags": ["Education", "Awareness", "Girls"],
+    "businessType": ["Social Welfare"],
+    "financialSupport": ["Awareness and programme support"],
+    "description": "A national initiative promoting protection, education and empowerment of the girl child.",
+    "benefit": "Awareness and coordinated programmes; it is not a universal direct-cash-benefit scheme.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Programme activities and participation depend on local implementation."
+    },
+    "documents": [],
+    "officialLink": "https://www.wcd.gov.in/women/beti-bachao-beti-padhao",
+    "applyLink": "https://www.wcd.gov.in/women/beti-bachao-beti-padhao",
+    "translations": {
+      "mr": {
+        "name": "बेटी बचाओ बेटी पढाओ",
+        "description": "मुलींचे संरक्षण, शिक्षण आणि समानता वाढवणारा राष्ट्रीय उपक्रम.",
+        "benefit": "जनजागृती आणि सामाजिक उपक्रम; सर्वांना थेट रोख लाभ मिळत नाही.",
+        "eligibilityNotes": "स्थानिक उपक्रम आणि अंमलबजावणीनुसार सहभाग ठरतो."
+      },
+      "hi": {
+        "name": "बेटी बचाओ बेटी पढ़ाओ",
+        "description": "बालिकाओं की सुरक्षा, शिक्षा और समानता बढ़ाने वाला राष्ट्रीय अभियान।",
+        "benefit": "जागरूकता और सामाजिक कार्यक्रम; सभी को प्रत्यक्ष नकद लाभ नहीं मिलता।",
+        "eligibilityNotes": "स्थानीय कार्यक्रमों और कार्यान्वयन के अनुसार भागीदारी तय होती है।"
+      }
+    }
+  },
+  {
+    "id": 16,
+    "name": "Pradhan Mantri Awas Yojana - Urban",
+    "shortName": "PMAY-U",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "category": ["General", "Urban Households"],
+    "tags": ["Housing", "Urban", "Home"],
+    "businessType": ["Housing"],
+    "financialSupport": ["Housing assistance"],
+    "description": "Supports eligible urban households through housing assistance under applicable programme components.",
+    "benefit": "Housing-related support depends on household eligibility and current programme rules.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Income, housing ownership and component-specific conditions apply."
+    },
+    "documents": ["Aadhaar Card", "Income Proof", "Residence Details", "Property Documents if applicable"],
+    "officialLink": "https://pmay-urban.gov.in/",
+    "applyLink": "https://pmay-urban.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "प्रधानमंत्री आवास योजना – शहरी",
+        "description": "पात्र शहरी कुटुंबांना घरासाठी सहाय्य.",
+        "benefit": "कुटुंबाची पात्रता आणि संबंधित घटकानुसार गृहनिर्माण सहाय्य.",
+        "eligibilityNotes": "उत्पन्न, घराची मालकी आणि संबंधित घटकाच्या अटी लागू."
+      },
+      "hi": {
+        "name": "प्रधानमंत्री आवास योजना – शहरी",
+        "description": "पात्र शहरी परिवारों को आवास संबंधी सहायता।",
+        "benefit": "परिवार की पात्रता और संबंधित घटक के अनुसार आवास सहायता।",
+        "eligibilityNotes": "आय, घर का स्वामित्व और घटक-विशिष्ट शर्तें लागू।"
+      }
+    }
+  },
+  {
+    "id": 17,
+    "name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana",
+    "shortName": "PM-JAY",
+    "ministry": "Ministry of Health and Family Welfare",
+    "category": ["General", "Eligible Families"],
+    "tags": ["Healthcare", "Insurance", "Hospital"],
+    "businessType": ["Healthcare"],
+    "financialSupport": ["Covered hospital treatment"],
+    "description": "Provides eligible beneficiaries access to covered hospital treatment through PM-JAY.",
+    "benefit": "Cashless hospitalization coverage for eligible beneficiaries at participating hospitals.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Beneficiary identification, coverage and treatment rules apply."
+    },
+    "documents": ["Identity Proof", "Beneficiary Verification Details"],
+    "officialLink": "https://pmjay.gov.in/",
+    "applyLink": "https://pmjay.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "आयुष्मान भारत – प्रधानमंत्री जन आरोग्य योजना",
+        "description": "पात्र लाभार्थ्यांना सहभागी रुग्णालयांत उपचारासाठी आरोग्य संरक्षण.",
+        "benefit": "पात्र कुटुंबांना नियमांनुसार कॅशलेस रुग्णालयीन उपचार.",
+        "eligibilityNotes": "लाभार्थी पडताळणी, उपचार कवच आणि संबंधित नियम लागू."
+      },
+      "hi": {
+        "name": "आयुष्मान भारत – प्रधानमंत्री जन आरोग्य योजना",
+        "description": "पात्र लाभार्थियों को सूचीबद्ध अस्पतालों में उपचार हेतु स्वास्थ्य सुरक्षा।",
+        "benefit": "पात्र परिवारों को नियमों के अनुसार कैशलेस अस्पताल उपचार।",
+        "eligibilityNotes": "लाभार्थी सत्यापन, उपचार कवरेज और संबंधित नियम लागू।"
+      }
+    }
+  },
+  {
+    "id": 18,
+    "name": "Pradhan Mantri Kaushal Vikas Yojana",
+    "shortName": "PMKVY",
+    "ministry": "Ministry of Skill Development and Entrepreneurship",
+    "category": ["Students", "Youth"],
+    "tags": ["Skills", "Training", "Employment"],
+    "businessType": ["Education", "Skill Development"],
+    "financialSupport": ["Skill training", "Certification"],
+    "description": "Provides skill training and certification opportunities to eligible candidates.",
+    "benefit": "Training and assessment benefits depend on current courses and approved providers.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Course-specific age, qualification and registration rules apply."
+    },
+    "documents": ["Aadhaar Card", "Education Documents", "Identity Proof"],
+    "officialLink": "https://www.skillindiadigital.gov.in/",
+    "applyLink": "https://www.skillindiadigital.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "प्रधानमंत्री कौशल्य विकास योजना",
+        "description": "पात्र युवकांना कौशल्य प्रशिक्षण आणि प्रमाणपत्राची संधी.",
+        "benefit": "अभ्यासक्रम आणि प्रशिक्षण केंद्रानुसार प्रशिक्षण व प्रमाणपत्र.",
+        "eligibilityNotes": "अभ्यासक्रमानुसार वय, शिक्षण आणि नोंदणीच्या अटी लागू."
+      },
+      "hi": {
+        "name": "प्रधानमंत्री कौशल विकास योजना",
+        "description": "पात्र युवाओं को कौशल प्रशिक्षण और प्रमाणन के अवसर।",
+        "benefit": "पाठ्यक्रम और प्रशिक्षण केंद्र के अनुसार प्रशिक्षण एवं प्रमाणन।",
+        "eligibilityNotes": "पाठ्यक्रम के अनुसार आयु, शिक्षा और पंजीकरण की शर्तें लागू।"
+      }
+    }
+  },
+  {
+    "id": 19,
+    "name": "PM Vishwakarma",
+    "shortName": "PM Vishwakarma",
+    "ministry": "Ministry of MSME",
+    "category": ["Artisans", "Craftspeople"],
+    "tags": ["Artisans", "Traditional Trades", "Skills"],
+    "businessType": ["Handicrafts", "Traditional Trades"],
+    "financialSupport": ["Training", "Toolkit incentive", "Credit support"],
+    "description": "Supports eligible artisans working with their hands and tools in covered traditional trades.",
+    "benefit": "May include training, toolkit incentives, credit and marketing assistance.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Applicant must satisfy the listed traditional-trade and current eligibility requirements."
+    },
+    "documents": ["Aadhaar Card", "Bank Details", "Trade Verification"],
+    "officialLink": "https://pmvishwakarma.gov.in/",
+    "applyLink": "https://pmvishwakarma.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "पीएम विश्वकर्मा योजना",
+        "description": "पारंपरिक व्यवसाय करणाऱ्या पात्र कारागिरांना सहाय्य.",
+        "benefit": "प्रशिक्षण, साधनसामग्री प्रोत्साहन, कर्ज आणि विपणन मदत.",
+        "eligibilityNotes": "समाविष्ट पारंपरिक व्यवसाय आणि सध्याच्या पात्रतेच्या अटी लागू."
+      },
+      "hi": {
+        "name": "पीएम विश्वकर्मा योजना",
+        "description": "पारंपरिक व्यवसाय करने वाले पात्र कारीगरों को सहायता।",
+        "benefit": "प्रशिक्षण, औजार प्रोत्साहन, ऋण और विपणन सहायता।",
+        "eligibilityNotes": "सूचीबद्ध पारंपरिक व्यवसाय और वर्तमान पात्रता की शर्तें लागू।"
+      }
+    }
+  },
+  {
+    "id": 20,
+    "name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "shortName": "PM SVANidhi",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "category": ["Street Vendors"],
+    "tags": ["Street Vendors", "Loan", "Livelihood"],
+    "businessType": ["Street Vending", "Trading"],
+    "financialSupport": ["Working capital loans"],
+    "description": "Supports eligible street vendors through working-capital credit.",
+    "benefit": "Loan amounts and incentives depend on current programme rules and eligibility.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Street-vendor identification and programme conditions apply."
+    },
+    "documents": ["Aadhaar Card", "Vendor Identification or Applicable Proof", "Bank Details"],
+    "officialLink": "https://pmsvanidhi.mohua.gov.in/",
+    "applyLink": "https://pmsvanidhi.mohua.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "पीएम स्वनिधी योजना",
+        "description": "पात्र फेरीवाल्यांना व्यवसायासाठी खेळते भांडवल कर्ज सहाय्य.",
+        "benefit": "कर्जरक्कम, परतफेड आणि प्रोत्साहन सध्याच्या नियमांनुसार.",
+        "eligibilityNotes": "फेरीवाला ओळख आणि कार्यक्रमाच्या पात्रतेच्या अटी लागू."
+      },
+      "hi": {
+        "name": "पीएम स्वनिधि योजना",
+        "description": "पात्र रेहड़ी-पटरी विक्रेताओं को कार्यशील पूँजी ऋण सहायता।",
+        "benefit": "ऋण राशि, पुनर्भुगतान और प्रोत्साहन वर्तमान नियमों के अनुसार।",
+        "eligibilityNotes": "स्ट्रीट वेंडर पहचान और कार्यक्रम की पात्रता शर्तें लागू।"
+      }
+    }
+  },
+  {
+    "id": 21,
+    "name": "Pradhan Mantri Matru Vandana Yojana",
+    "shortName": "PMMVY",
+    "ministry": "Ministry of Women and Child Development",
+    "category": ["Women", "Mothers"],
+    "tags": ["Maternity", "Women", "Welfare"],
+    "businessType": ["Social Welfare"],
+    "financialSupport": ["Maternity benefit assistance"],
+    "description": "Provides financial assistance to eligible pregnant women and lactating mothers.",
+    "benefit": "Maternity benefits depend on applicable pregnancy, birth and eligibility conditions.",
+    "eligibility": {
+      "states": ["All"],
+      "maxIncome": null,
+      "notes": "Current maternity-benefit, applicant and documentation requirements apply."
+    },
+    "documents": ["Aadhaar Card", "Bank Details", "Pregnancy or Birth Records", "Required Registration Documents"],
+    "officialLink": "https://www.wcd.gov.in/",
+    "applyLink": "https://www.wcd.gov.in/",
+    "translations": {
+      "mr": {
+        "name": "प्रधानमंत्री मातृ वंदना योजना",
+        "description": "पात्र गर्भवती आणि स्तनदा मातांना आर्थिक सहाय्य.",
+        "benefit": "गर्भधारणा, जन्म आणि पात्रतेच्या नियमांनुसार मातृत्व लाभ.",
+        "eligibilityNotes": "मातृत्व लाभ आणि आवश्यक कागदपत्रांच्या सध्याच्या अटी लागू."
+      },
+      "hi": {
+        "name": "प्रधानमंत्री मातृ वंदना योजना",
+        "description": "पात्र गर्भवती और स्तनपान कराने वाली माताओं को आर्थिक सहायता।",
+        "benefit": "गर्भावस्था, जन्म और पात्रता नियमों के अनुसार मातृत्व लाभ।",
+        "eligibilityNotes": "मातृत्व लाभ और आवश्यक दस्तावेजों की वर्तमान शर्तें लागू।"
+      }
+    }
+  }
+]

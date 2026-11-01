@@ -17,8 +17,146 @@ import {
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext.jsx";
+
+const partnerTranslations = {
+  "hi": {
+    "Find • Qualify • Apply • Grow": "खोजें • पात्रता जाँचें • आवेदन करें • आगे बढ़ें",
+    "Back to Home": "होम पर वापस जाएँ",
+    "Support Partner Finder": "सहायता भागीदार खोजें",
+    "Find the Right": "सही विकल्प खोजें",
+    "Support Near You": "आपके पास सहायता",
+    "Search for banks, government support offices, digital service centres and entrepreneurship support based on your location and business needs.": "अपने स्थान और व्यवसाय की जरूरतों के अनुसार बैंक, सरकारी कार्यालय, डिजिटल सेवा केंद्र और उद्यमिता सहायता खोजें।",
+    "FIND SUPPORT": "सहायता खोजें",
+    "Where Do You Need Help?": "आपको कहाँ सहायता चाहिए?",
+    "City / District / PIN Code": "शहर / जिला / पिन कोड",
+    "Example: Solapur, Maharashtra": "उदाहरण: सोलापुर, महाराष्ट्र",
+    "Partner Type": "भागीदार का प्रकार",
+    "All Support Partners": "सभी सहायता भागीदार",
+    "Banks": "बैंक",
+    "Government Offices": "सरकारी कार्यालय",
+    "CSC / Digital Support": "सीएससी / डिजिटल सहायता",
+    "Business / MSME Support": "व्यवसाय / एमएसएमई सहायता",
+    "What Do You Need?": "आपको क्या चाहिए?",
+    "Scheme Support": "योजना सहायता",
+    "Loan / Credit": "ऋण / क्रेडिट",
+    "Subsidy / Grant": "सब्सिडी / अनुदान",
+    "Business Registration": "व्यवसाय पंजीकरण",
+    "Application Assistance": "आवेदन सहायता",
+    "Digital Services": "डिजिटल सेवाएँ",
+    "Find Support": "सहायता खोजें",
+    "Use My Location": "मेरी लोकेशन का उपयोग करें",
+    "We do not display unverified partner addresses. Search results are opened through map/location services.": "हम अप्रमाणित भागीदारों के पते नहीं दिखाते। खोज के परिणाम मानचित्र सेवाओं में खुलते हैं।",
+    "SUPPORT OPTIONS": "सहायता विकल्प",
+    "Support Options Near Your Search": "आपकी खोज के पास सहायता विकल्प",
+    "Choose the Support You Need": "अपनी जरूरत की सहायता चुनें",
+    "Location Based Search": "स्थान आधारित खोज",
+    "Useful for:": "इसके लिए उपयोगी:",
+    "Search Near": "पास में खोजें",
+    "Me": "मेरे",
+    "OFFICIAL SUPPORT CHANNELS": "आधिकारिक सहायता माध्यम",
+    "Useful Government & Financial Portals": "उपयोगी सरकारी और वित्तीय पोर्टल",
+    "These resources can help users continue their journey after discovering a suitable scheme.": "ये संसाधन उपयुक्त योजना मिलने के बाद आगे बढ़ने में मदद करते हैं।",
+    "OFFICIAL PORTAL": "आधिकारिक पोर्टल",
+    "Government credit-linked scheme discovery and application platform.": "सरकारी ऋण-संबंधित योजनाओं की खोज और आवेदन का मंच।",
+    "Open Portal": "पोर्टल खोलें",
+    "FINANCIAL SUPPORT": "वित्तीय सहायता",
+    "Financial and development support for eligible micro, small and medium enterprises.": "पात्र सूक्ष्म, लघु और मध्यम उद्यमों के लिए वित्तीय और विकास सहायता।",
+    "Visit SIDBI": "सिडबी देखें",
+    "MSME SUPPORT": "एमएसएमई सहायता",
+    "MSME support, guidance and grievance assistance through the government platform.": "सरकारी मंच से एमएसएमई सहायता, मार्गदर्शन और शिकायत समाधान।",
+    "Visit MSME CHAMPIONS": "एमएसएमई चैंपियंस देखें",
+    "NEXT STEP": "अगला कदम",
+    "Found a scheme but need help applying?": "योजना मिली, लेकिन आवेदन में मदद चाहिए?",
+    "Use YojanaSathi AI's scheme information and application guidance to understand what to do next.": "अगला कदम समझने के लिए योजना साथी एआई की योजना जानकारी और आवेदन मार्गदर्शन का उपयोग करें.",
+    "Explore Schemes": "योजनाएँ देखें",
+    "Banks & Lending Partners": "बैंक और ऋण भागीदार",
+    "Find nearby banks and financial institutions that may provide eligible credit or loan support.": "पास के बैंक और वित्तीय संस्थान खोजें जो पात्र ऋण सहायता दे सकते हैं।",
+    "District Industry Support": "जिला उद्योग सहायता",
+    "Locate district-level business support offices and entrepreneurship assistance.": "जिला स्तरीय व्यवसाय सहायता कार्यालय और उद्यमिता मदद खोजें।",
+    "CSC & Digital Support": "सीएससी और डिजिटल सहायता",
+    "Find nearby Common Service Centres and digital assistance points.": "नजदीकी कॉमन सर्विस सेंटर और डिजिटल सहायता केंद्र खोजें।",
+    "Entrepreneurship Support": "उद्यमिता सहायता",
+    "Search for MSME support organisations, incubators and entrepreneurship assistance.": "एमएसएमई सहायता संगठन, इनक्यूबेटर और उद्यमिता सहायता खोजें।",
+    "Bank": "बैंक",
+    "Government Office": "सरकारी कार्यालय",
+    "Digital Support": "डिजिटल सहायता",
+    "Business Support": "व्यवसाय सहायता",
+    "Location detection is not supported by this browser.": "यह ब्राउज़र स्थान पहचान का समर्थन नहीं करता।",
+    "Location permission was not available. Please enter your city or district manually.": "स्थान की अनुमति नहीं मिली। कृपया शहर या जिला स्वयं दर्ज करें।"
+  },
+  "mr": {
+    "Find • Qualify • Apply • Grow": "शोधा • पात्रता तपासा • अर्ज करा • प्रगती करा",
+    "Back to Home": "मुख्यपृष्ठावर परत जा",
+    "Support Partner Finder": "सहाय्य भागीदार शोधा",
+    "Find the Right": "योग्य पर्याय शोधा",
+    "Support Near You": "तुमच्या जवळचे सहाय्य",
+    "Search for banks, government support offices, digital service centres and entrepreneurship support based on your location and business needs.": "तुमचे ठिकाण आणि व्यवसायाच्या गरजेनुसार बँका, सरकारी कार्यालये, डिजिटल सेवा केंद्रे आणि उद्योजकता सहाय्य शोधा.",
+    "FIND SUPPORT": "सहाय्य शोधा",
+    "Where Do You Need Help?": "तुम्हाला कुठे मदत हवी आहे?",
+    "City / District / PIN Code": "शहर / जिल्हा / पिन कोड",
+    "Example: Solapur, Maharashtra": "उदाहरण: सोलापूर, महाराष्ट्र",
+    "Partner Type": "भागीदार प्रकार",
+    "All Support Partners": "सर्व सहाय्य भागीदार",
+    "Banks": "बँका",
+    "Government Offices": "सरकारी कार्यालये",
+    "CSC / Digital Support": "सीएससी / डिजिटल सहाय्य",
+    "Business / MSME Support": "व्यवसाय / एमएसएमई सहाय्य",
+    "What Do You Need?": "तुम्हाला काय हवे आहे?",
+    "Scheme Support": "योजना सहाय्य",
+    "Loan / Credit": "कर्ज / पत",
+    "Subsidy / Grant": "अनुदान / अर्थसहाय्य",
+    "Business Registration": "व्यवसाय नोंदणी",
+    "Application Assistance": "अर्ज सहाय्य",
+    "Digital Services": "डिजिटल सेवा",
+    "Find Support": "सहाय्य शोधा",
+    "Use My Location": "माझे स्थान वापरा",
+    "We do not display unverified partner addresses. Search results are opened through map/location services.": "आम्ही पडताळणी न केलेले भागीदार पत्ते दाखवत नाही. शोध परिणाम नकाशा सेवांमध्ये उघडतात.",
+    "SUPPORT OPTIONS": "सहाय्य पर्याय",
+    "Support Options Near Your Search": "तुमच्या शोधाजवळील सहाय्य पर्याय",
+    "Choose the Support You Need": "हवे असलेले सहाय्य निवडा",
+    "Location Based Search": "स्थानावर आधारित शोध",
+    "Useful for:": "यासाठी उपयुक्त:",
+    "Search Near": "जवळ शोधा",
+    "Me": "माझ्या",
+    "OFFICIAL SUPPORT CHANNELS": "अधिकृत सहाय्य माध्यमे",
+    "Useful Government & Financial Portals": "उपयुक्त सरकारी आणि आर्थिक पोर्टल",
+    "These resources can help users continue their journey after discovering a suitable scheme.": "योग्य योजना मिळाल्यानंतर पुढील प्रक्रिया करण्यासाठी ही साधने मदत करतात.",
+    "OFFICIAL PORTAL": "अधिकृत पोर्टल",
+    "Government credit-linked scheme discovery and application platform.": "सरकारी कर्ज-संबंधित योजना शोध आणि अर्ज करण्याचे व्यासपीठ.",
+    "Open Portal": "पोर्टल उघडा",
+    "FINANCIAL SUPPORT": "आर्थिक सहाय्य",
+    "Financial and development support for eligible micro, small and medium enterprises.": "पात्र सूक्ष्म, लघु आणि मध्यम उद्योगांसाठी आर्थिक व विकास सहाय्य.",
+    "Visit SIDBI": "सिडबीला भेट द्या",
+    "MSME SUPPORT": "एमएसएमई सहाय्य",
+    "MSME support, guidance and grievance assistance through the government platform.": "सरकारी व्यासपीठाद्वारे एमएसएमई सहाय्य, मार्गदर्शन आणि तक्रार निवारण.",
+    "Visit MSME CHAMPIONS": "एमएसएमई चॅम्पियन्सला भेट द्या",
+    "NEXT STEP": "पुढील पाऊल",
+    "Found a scheme but need help applying?": "योजना सापडली, पण अर्जासाठी मदत हवी आहे?",
+    "Use YojanaSathi AI's scheme information and application guidance to understand what to do next.": "पुढे काय करायचे हे समजण्यासाठी योजनासाथी एआयची योजना माहिती आणि अर्ज मार्गदर्शन वापरा.",
+    "Explore Schemes": "योजना पाहा",
+    "Banks & Lending Partners": "बँका आणि कर्ज भागीदार",
+    "Find nearby banks and financial institutions that may provide eligible credit or loan support.": "पात्र कर्ज सहाय्य देऊ शकणाऱ्या जवळच्या बँका आणि वित्तीय संस्था शोधा.",
+    "District Industry Support": "जिल्हा उद्योग सहाय्य",
+    "Locate district-level business support offices and entrepreneurship assistance.": "जिल्हास्तरीय व्यवसाय सहाय्य कार्यालये आणि उद्योजकता मदत शोधा.",
+    "CSC & Digital Support": "सीएससी आणि डिजिटल सहाय्य",
+    "Find nearby Common Service Centres and digital assistance points.": "जवळची कॉमन सर्व्हिस सेंटर आणि डिजिटल मदत केंद्रे शोधा.",
+    "Entrepreneurship Support": "उद्योजकता सहाय्य",
+    "Search for MSME support organisations, incubators and entrepreneurship assistance.": "एमएसएमई सहाय्य संस्था, इनक्युबेटर आणि उद्योजकता मदत शोधा.",
+    "Bank": "बँक",
+    "Government Office": "सरकारी कार्यालय",
+    "Digital Support": "डिजिटल सहाय्य",
+    "Business Support": "व्यवसाय सहाय्य",
+    "Location detection is not supported by this browser.": "हा ब्राउझर स्थान शोधण्यास समर्थन देत नाही.",
+    "Location permission was not available. Please enter your city or district manually.": "स्थानाची परवानगी मिळाली नाही. कृपया शहर किंवा जिल्हा स्वतः लिहा."
+  }
+};
+
+
 
 function Partner() {
+  const { language } = useLanguage();
+  const tr = (value) => partnerTranslations[language]?.[value] || value;
   const [location, setLocation] = useState("");
   const [partnerType, setPartnerType] = useState("All");
   const [service, setService] = useState("Scheme Support");
@@ -27,9 +165,9 @@ function Partner() {
   const partnerOptions = [
     {
       id: 1,
-      name: "Banks & Lending Partners",
+      name: tr("Banks & Lending Partners"),
       description:
-        "Find nearby banks and financial institutions that may provide eligible credit or loan support.",
+        tr("Find nearby banks and financial institutions that may provide eligible credit or loan support."),
       icon: <Building2 size={23} />,
       category: "Bank",
       color: "green",
@@ -37,9 +175,9 @@ function Partner() {
     },
     {
       id: 2,
-      name: "District Industry Support",
+      name: tr("District Industry Support"),
       description:
-        "Locate district-level business support offices and entrepreneurship assistance.",
+        tr("Locate district-level business support offices and entrepreneurship assistance."),
       icon: <Landmark size={23} />,
       category: "Government Office",
       color: "purple",
@@ -47,9 +185,9 @@ function Partner() {
     },
     {
       id: 3,
-      name: "CSC & Digital Support",
+      name: tr("CSC & Digital Support"),
       description:
-        "Find nearby Common Service Centres and digital assistance points.",
+        tr("Find nearby Common Service Centres and digital assistance points."),
       icon: <Store size={23} />,
       category: "Digital Support",
       color: "blue",
@@ -57,9 +195,9 @@ function Partner() {
     },
     {
       id: 4,
-      name: "Entrepreneurship Support",
+      name: tr("Entrepreneurship Support"),
       description:
-        "Search for MSME support organisations, incubators and entrepreneurship assistance.",
+        tr("Search for MSME support organisations, incubators and entrepreneurship assistance."),
       icon: <Users size={23} />,
       category: "Business Support",
       color: "orange",
@@ -93,7 +231,7 @@ function Partner() {
 
   const detectLocation = () => {
     if (!navigator.geolocation) {
-      alert("Location detection is not supported by this browser.");
+      alert(tr("Location detection is not supported by this browser."));
       return;
     }
 
@@ -109,7 +247,7 @@ function Partner() {
       },
       () => {
         alert(
-          "Location permission was not available. Please enter your city or district manually."
+          tr("Location permission was not available. Please enter your city or district manually.")
         );
       }
     );
@@ -132,14 +270,14 @@ function Partner() {
 
           <div>
             <h2>YojanaSathi AI</h2>
-            <p>Find • Qualify • Apply • Grow</p>
+            <p>{tr("Find • Qualify • Apply • Grow")}</p>
           </div>
 
         </Link>
 
         <Link to="/" className="partner-back-home">
           <ArrowLeft size={16} />
-          Back to Home
+          {tr("Back to Home")}
         </Link>
 
       </header>
@@ -157,19 +295,17 @@ function Partner() {
 
           <div className="partner-badge">
             <MapPin size={15} />
-            Support Partner Finder
+            {tr("Support Partner Finder")}
           </div>
 
           <h1>
-            Find the Right
+            {tr("Find the Right")}
             <br />
-            <span>Support Near You</span>
+            <span>{tr("Support Near You")}</span>
           </h1>
 
           <p>
-            Search for banks, government support offices, digital service
-            centres and entrepreneurship support based on your location
-            and business needs.
+            {tr("Search for banks, government support offices, digital service centres and entrepreneurship support based on your location and business needs.")}
           </p>
 
         </section>
@@ -186,11 +322,11 @@ function Partner() {
             <div>
 
               <span>
-                FIND SUPPORT
+                {tr("FIND SUPPORT")}
               </span>
 
               <h2>
-                Where Do You Need Help?
+                {tr("Where Do You Need Help?")}
               </h2>
 
             </div>
@@ -212,7 +348,7 @@ function Partner() {
             <div className="partner-field">
 
               <label>
-                City / District / PIN Code
+                {tr("City / District / PIN Code")}
               </label>
 
               <div className="partner-input">
@@ -221,7 +357,7 @@ function Partner() {
 
                 <input
                   type="text"
-                  placeholder="Example: Solapur, Maharashtra"
+                  placeholder={tr("Example: Solapur, Maharashtra")}
                   value={location}
                   onChange={(event) =>
                     setLocation(event.target.value)
@@ -238,7 +374,7 @@ function Partner() {
             <div className="partner-field">
 
               <label>
-                Partner Type
+                {tr("Partner Type")}
               </label>
 
               <div className="partner-input">
@@ -253,23 +389,23 @@ function Partner() {
                 >
 
                   <option value="All">
-                    All Support Partners
+                    {tr("All Support Partners")}
                   </option>
 
                   <option value="Bank">
-                    Banks
+                    {tr("Banks")}
                   </option>
 
                   <option value="Government Office">
-                    Government Offices
+                    {tr("Government Offices")}
                   </option>
 
                   <option value="Digital Support">
-                    CSC / Digital Support
+                    {tr("CSC / Digital Support")}
                   </option>
 
                   <option value="Business Support">
-                    Business / MSME Support
+                    {tr("Business / MSME Support")}
                   </option>
 
                 </select>
@@ -284,7 +420,7 @@ function Partner() {
             <div className="partner-field">
 
               <label>
-                What Do You Need?
+                {tr("What Do You Need?")}
               </label>
 
               <div className="partner-input">
@@ -298,28 +434,28 @@ function Partner() {
                   }
                 >
 
-                  <option>
-                    Scheme Support
+                  <option value="Scheme Support">
+                    {tr("Scheme Support")}
                   </option>
 
-                  <option>
-                    Loan / Credit
+                  <option value="Loan / Credit">
+                    {tr("Loan / Credit")}
                   </option>
 
-                  <option>
-                    Subsidy / Grant
+                  <option value="Subsidy / Grant">
+                    {tr("Subsidy / Grant")}
                   </option>
 
-                  <option>
-                    Business Registration
+                  <option value="Business Registration">
+                    {tr("Business Registration")}
                   </option>
 
-                  <option>
-                    Application Assistance
+                  <option value="Application Assistance">
+                    {tr("Application Assistance")}
                   </option>
 
-                  <option>
-                    Digital Services
+                  <option value="Digital Services">
+                    {tr("Digital Services")}
                   </option>
 
                 </select>
@@ -340,7 +476,7 @@ function Partner() {
 
                 <Search size={17} />
 
-                Find Support
+                {tr("Find Support")}
 
                 <ArrowRight size={16} />
 
@@ -355,7 +491,7 @@ function Partner() {
 
                 <Navigation size={16} />
 
-                Use My Location
+                {tr("Use My Location")}
 
               </button>
 
@@ -369,8 +505,7 @@ function Partner() {
             <ShieldCheck size={14} />
 
             <span>
-              We do not display unverified partner addresses.
-              Search results are opened through map/location services.
+              {tr("We do not display unverified partner addresses. Search results are opened through map/location services.")}
             </span>
 
           </div>
@@ -389,13 +524,13 @@ function Partner() {
             <div>
 
               <span>
-                SUPPORT OPTIONS
+                {tr("SUPPORT OPTIONS")}
               </span>
 
               <h2>
                 {searched
-                  ? "Support Options Near Your Search"
-                  : "Choose the Support You Need"}
+                  ? tr("Support Options Near Your Search")
+                  : tr("Choose the Support You Need")}
               </h2>
 
             </div>
@@ -404,7 +539,7 @@ function Partner() {
 
               <span></span>
 
-              Location Based Search
+              {tr("Location Based Search")}
 
             </div>
 
@@ -429,7 +564,7 @@ function Partner() {
                   </div>
 
                   <span className="partner-type">
-                    {partner.category}
+                    {tr(partner.category)}
                   </span>
 
                 </div>
@@ -450,7 +585,7 @@ function Partner() {
                   <CheckCircle2 size={15} />
 
                   <span>
-                    Useful for: {service}
+                    {tr("Useful for:")} {tr(service)}
                   </span>
 
                 </div>
@@ -466,7 +601,7 @@ function Partner() {
 
                   <MapPin size={15} />
 
-                  Search Near {location || "Me"}
+                  {tr("Search Near")} {location || tr("Me")}
 
                   <ExternalLink size={14} />
 
@@ -490,16 +625,15 @@ function Partner() {
           <div className="official-partner-heading">
 
             <span>
-              OFFICIAL SUPPORT CHANNELS
+              {tr("OFFICIAL SUPPORT CHANNELS")}
             </span>
 
             <h2>
-              Useful Government & Financial Portals
+              {tr("Useful Government & Financial Portals")}
             </h2>
 
             <p>
-              These resources can help users continue their journey
-              after discovering a suitable scheme.
+              {tr("These resources can help users continue their journey after discovering a suitable scheme.")}
             </p>
 
           </div>
@@ -523,7 +657,7 @@ function Partner() {
               <div>
 
                 <span>
-                  OFFICIAL PORTAL
+                  {tr("OFFICIAL PORTAL")}
                 </span>
 
                 <h3>
@@ -531,12 +665,11 @@ function Partner() {
                 </h3>
 
                 <p>
-                  Government credit-linked scheme discovery and
-                  application platform.
+                  {tr("Government credit-linked scheme discovery and application platform.")}
                 </p>
 
                 <strong>
-                  Open Portal
+                  {tr("Open Portal")}
                   <ExternalLink size={13} />
                 </strong>
 
@@ -561,7 +694,7 @@ function Partner() {
               <div>
 
                 <span>
-                  FINANCIAL SUPPORT
+                  {tr("FINANCIAL SUPPORT")}
                 </span>
 
                 <h3>
@@ -569,12 +702,11 @@ function Partner() {
                 </h3>
 
                 <p>
-                  Financial and development support for eligible
-                  micro, small and medium enterprises.
+                  {tr("Financial and development support for eligible micro, small and medium enterprises.")}
                 </p>
 
                 <strong>
-                  Visit SIDBI
+                  {tr("Visit SIDBI")}
                   <ExternalLink size={13} />
                 </strong>
 
@@ -599,7 +731,7 @@ function Partner() {
               <div>
 
                 <span>
-                  MSME SUPPORT
+                  {tr("MSME SUPPORT")}
                 </span>
 
                 <h3>
@@ -607,12 +739,11 @@ function Partner() {
                 </h3>
 
                 <p>
-                  MSME support, guidance and grievance assistance
-                  through the government platform.
+                  {tr("MSME support, guidance and grievance assistance through the government platform.")}
                 </p>
 
                 <strong>
-                  Visit MSME CHAMPIONS
+                  {tr("Visit MSME CHAMPIONS")}
                   <ExternalLink size={13} />
                 </strong>
 
@@ -638,16 +769,15 @@ function Partner() {
           <div>
 
             <span>
-              NEXT STEP
+              {tr("NEXT STEP")}
             </span>
 
             <h2>
-              Found a scheme but need help applying?
+              {tr("Found a scheme but need help applying?")}
             </h2>
 
             <p>
-              Use YojanaSathi AI's scheme information and application
-              guidance to understand what to do next.
+              {tr("Use YojanaSathi AI's scheme information and application guidance to understand what to do next.")}
             </p>
 
           </div>
@@ -657,7 +787,7 @@ function Partner() {
             className="partner-cta-btn"
           >
 
-            Explore Schemes
+            {tr("Explore Schemes")}
 
             <ArrowRight size={16} />
 

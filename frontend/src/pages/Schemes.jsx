@@ -1,1146 +1,681 @@
+
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  ArrowRight,
-  Brain,
-  CheckCircle2,
-  ExternalLink,
-  FileCheck2,
-  IndianRupee,
-  Landmark,
   Search,
-  ShieldCheck,
+  ArrowRight,
+  ExternalLink,
   Sparkles,
-  WalletCards,
-  MapPin,
+  X,
+  Landmark,
+  Sprout,
+  Users,
+  GraduationCap,
+  HeartPulse,
   BriefcaseBusiness,
+  Factory,
+  HandHeart,
+  LayoutGrid,
+  FileText,
+  CheckCircle2,
+  ShieldCheck,
+  Building2,
 } from "lucide-react";
 
-import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext.jsx";
+import schemesData from "../data/schemes.json";
 
-function Schemes() {
-  const navigate = useNavigate();
+const schemes = Array.isArray(schemesData) ? schemesData : [];
 
-  const [schemes, setSchemes] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] =
-    useState("All");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+const categoryConfig = [
+  {
+    id: "all",
+    icon: LayoutGrid,
+    label: {
+      en: "All Schemes",
+      mr: "सर्व योजना",
+      hi: "सभी योजनाएँ",
+    },
+    ids: [],
+  },
+  {
+    id: "business",
+    icon: BriefcaseBusiness,
+    label: {
+      en: "Business & Startups",
+      mr: "व्यवसाय व स्टार्टअप",
+      hi: "व्यवसाय और स्टार्टअप",
+    },
+    ids: [1, 2, 3, 7],
+  },
+  {
+    id: "msme",
+    icon: Factory,
+    label: {
+      en: "MSME & Small Business",
+      mr: "सूक्ष्म व लघुउद्योग",
+      hi: "सूक्ष्म और लघु उद्योग",
+    },
+    ids: [6],
+  },
+  {
+    id: "agriculture",
+    icon: Sprout,
+    label: {
+      en: "Agriculture & Farmers",
+      mr: "शेती व शेतकरी",
+      hi: "कृषि और किसान",
+    },
+    ids: [9, 10, 11, 12],
+  },
+  {
+    id: "women",
+    icon: Users,
+    label: {
+      en: "Women & Girls",
+      mr: "महिला व मुली",
+      hi: "महिलाएँ और बालिकाएँ",
+    },
+    ids: [8, 14, 15, 21],
+  },
+  {
+    id: "scst",
+    icon: HandHeart,
+    label: {
+      en: "SC/ST Empowerment",
+      mr: "SC/ST सक्षमीकरण",
+      hi: "SC/ST सशक्तिकरण",
+    },
+    ids: [4],
+  },
+  {
+    id: "livelihood",
+    icon: Building2,
+    label: {
+      en: "Artisans & Livelihood",
+      mr: "कारागीर व उपजीविका",
+      hi: "कारीगर और आजीविका",
+    },
+    ids: [5, 19, 20],
+  },
+  {
+    id: "education",
+    icon: GraduationCap,
+    label: {
+      en: "Education & Skills",
+      mr: "शिक्षण व कौशल्य",
+      hi: "शिक्षा और कौशल",
+    },
+    ids: [13, 18],
+  },
+  {
+    id: "health",
+    icon: HeartPulse,
+    label: {
+      en: "Housing & Healthcare",
+      mr: "गृहनिर्माण व आरोग्य",
+      hi: "आवास और स्वास्थ्य",
+    },
+    ids: [16, 17],
+  },
+];
 
-  /* ================= FETCH SCHEMES ================= */
+const translations = {
+  en: {
+    eyebrow: "Government Scheme Discovery",
+    title: "Explore Government Schemes",
+    subtitle:
+      "Discover government support for business, education, agriculture, healthcare and your financial goals.",
+    search: "Search schemes by name, category or benefit...",
+    totalSchemes: "Government Schemes",
+    categories: "Categories",
+    categoryHint: "Choose a category to explore schemes",
+    heading: "Government Schemes",
+    showing: "Showing",
+    schemes: "schemes",
+    matching: "Find My Matching Scheme",
+    benefits: "Key Benefits",
+    details: "View Details",
+    ministry: "Ministry",
+    eligibility: "Eligibility",
+    documents: "Required Documents",
+    support: "Financial Support",
+    website: "Visit Official Website",
+    apply: "Apply / Check Details",
+    close: "Close",
+    noResults: "No schemes found",
+    noResultsText: "Try another keyword or choose a different category.",
+    clear: "Clear Filters",
+    disclaimer:
+      "Scheme eligibility and benefits may change. Always verify details on the official government portal.",
+  },
 
-  useEffect(() => {
-    const fetchSchemes = async () => {
-      try {
-        setLoading(true);
-        setError("");
+  mr: {
+    eyebrow: "सरकारी योजना शोध",
+    title: "सरकारी योजना शोधा",
+    subtitle:
+      "व्यवसाय, शिक्षण, शेती, आरोग्य आणि आर्थिक गरजांसाठी सरकारी योजनांची माहिती मिळवा.",
+    search: "योजनेचे नाव, प्रवर्ग किंवा लाभ शोधा...",
+    totalSchemes: "सरकारी योजना",
+    categories: "योजनांचे प्रकार",
+    categoryHint: "योजना शोधण्यासाठी प्रकार निवडा",
+    heading: "सरकारी योजना",
+    showing: "दाखवत आहोत",
+    schemes: "योजना",
+    matching: "माझ्यासाठी योग्य योजना शोधा",
+    benefits: "मुख्य लाभ",
+    details: "सविस्तर माहिती",
+    ministry: "मंत्रालय",
+    eligibility: "पात्रता",
+    documents: "आवश्यक कागदपत्रे",
+    support: "आर्थिक सहाय्य",
+    website: "अधिकृत वेबसाइट",
+    apply: "अर्ज / अधिक माहिती",
+    close: "बंद करा",
+    noResults: "कोणतीही योजना सापडली नाही",
+    noResultsText: "दुसरा शब्द शोधा किंवा वेगळा प्रकार निवडा.",
+    clear: "फिल्टर काढा",
+    disclaimer:
+      "योजनांची पात्रता आणि लाभ बदलू शकतात. अधिकृत सरकारी वेबसाइटवर माहिती तपासा.",
+  },
 
-        const response = await fetch(
-          "http://localhost:5000/api/schemes"
-        );
+  hi: {
+    eyebrow: "सरकारी योजना खोज",
+    title: "सरकारी योजनाएँ खोजें",
+    subtitle:
+      "व्यवसाय, शिक्षा, कृषि, स्वास्थ्य और वित्तीय आवश्यकताओं के लिए सरकारी योजनाएँ खोजें।",
+    search: "योजना का नाम, श्रेणी या लाभ खोजें...",
+    totalSchemes: "सरकारी योजनाएँ",
+    categories: "योजना श्रेणियाँ",
+    categoryHint: "योजनाएँ देखने के लिए श्रेणी चुनें",
+    heading: "सरकारी योजनाएँ",
+    showing: "दिखा रहे हैं",
+    schemes: "योजनाएँ",
+    matching: "मेरे लिए सही योजना खोजें",
+    benefits: "मुख्य लाभ",
+    details: "विस्तृत जानकारी",
+    ministry: "मंत्रालय",
+    eligibility: "पात्रता",
+    documents: "आवश्यक दस्तावेज",
+    support: "वित्तीय सहायता",
+    website: "आधिकारिक वेबसाइट",
+    apply: "आवेदन / अधिक जानकारी",
+    close: "बंद करें",
+    noResults: "कोई योजना नहीं मिली",
+    noResultsText: "दूसरा शब्द खोजें या अलग श्रेणी चुनें।",
+    clear: "फ़िल्टर हटाएँ",
+    disclaimer:
+      "योजनाओं की पात्रता और लाभ बदल सकते हैं। आधिकारिक सरकारी वेबसाइट पर जानकारी जाँचें।",
+  },
+};
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch schemes");
-        }
+function getLocalized(scheme, language, field) {
+  if (language === "en") {
+    return scheme[field] || "";
+  }
 
-        const data = await response.json();
+  return (
+    scheme.translations?.[language]?.[field] ||
+    scheme[field] ||
+    ""
+  );
+}
 
-        if (!data.success) {
-          throw new Error(
-            data.message || "Unable to load schemes"
-          );
-        }
+function getEligibility(scheme, language) {
+  if (language !== "en") {
+    const translated = scheme.translations?.[language];
 
-        const formattedSchemes = (
-          data.schemes || []
-        ).map((scheme, index) => ({
-          ...scheme,
-
-          id: scheme.id || index + 1,
-
-          name:
-            scheme.name ||
-            "Government Scheme",
-
-          shortName:
-            scheme.shortName ||
-            scheme.name ||
-            "Government Support Scheme",
-
-          ministry:
-            scheme.ministry ||
-            "Government of India",
-
-          category:
-            Array.isArray(scheme.category)
-              ? scheme.category
-              : scheme.category
-              ? [scheme.category]
-              : [],
-
-          tags:
-            Array.isArray(scheme.tags)
-              ? scheme.tags
-              : [],
-
-          description:
-            scheme.description ||
-            "Government support scheme for eligible applicants.",
-
-          benefit:
-            scheme.benefit ||
-            "Financial and business support.",
-
-          financialSupport:
-            Array.isArray(
-              scheme.financialSupport
-            )
-              ? scheme.financialSupport
-              : scheme.financialSupport
-              ? [scheme.financialSupport]
-              : [],
-
-          eligibility:
-            scheme.eligibility || {},
-
-          businessType:
-            Array.isArray(scheme.businessType)
-              ? scheme.businessType
-              : scheme.businessType
-              ? [scheme.businessType]
-              : [],
-
-          officialLink:
-            scheme.officialLink || "#",
-
-          applyLink:
-            scheme.applyLink || "#",
-
-          icon:
-            scheme.icon || "🤝",
-
-          status:
-            scheme.status || "Active",
-        }));
-
-        setSchemes(formattedSchemes);
-      } catch (err) {
-        console.error(
-          "Schemes fetch error:",
-          err
-        );
-
-        setError(
-          "Unable to load government schemes. Please make sure the backend server is running."
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSchemes();
-  }, []);
-
-  /* ================= CATEGORIES ================= */
-
-  const categories = [
-    "All",
-    "Loans",
-    "Entrepreneurship",
-    "SC / ST / Women",
-    "Artisans",
-    "Food Processing",
-    "Credit Guarantee",
-    "Street Vendors",
-  ];
-
-  /* ================= HELPERS ================= */
-
-  const getStates = (scheme) => {
-    const states =
-      scheme?.eligibility?.states;
-
-    if (
-      Array.isArray(states) &&
-      states.length > 0
-    ) {
-      return states;
+    if (translated?.eligibilityNotes) {
+      return translated.eligibilityNotes;
     }
 
-    return ["All States"];
-  };
-
-  const getMaxIncome = (scheme) => {
-    const income =
-      scheme?.eligibility?.maxIncome;
-
-    if (
-      income === null ||
-      income === undefined
-    ) {
-      return null;
+    if (translated?.eligibility?.notes) {
+      return translated.eligibility.notes;
     }
+  }
 
-    return Number(income);
-  };
+  return scheme.eligibility?.notes || "";
+}
 
-  /* ================= CATEGORY MATCH ================= */
+export default function Schemes() {
+  const languageContext = useLanguage();
 
-  const matchesCategory = (
-    scheme,
-    category
-  ) => {
-    if (category === "All") {
-      return true;
-    }
+  const rawLanguage =
+    languageContext?.language ||
+    languageContext?.lang ||
+    "en";
 
-    const text = [
-      scheme.name,
-      scheme.description,
-      scheme.benefit,
-      ...(scheme.category || []),
-      ...(scheme.tags || []),
-      ...(scheme.financialSupport || []),
-      ...(scheme.businessType || []),
-    ]
-      .join(" ")
-      .toLowerCase();
+  const language = ["en", "mr", "hi"].includes(rawLanguage)
+    ? rawLanguage
+    : "en";
 
-    switch (category) {
-      case "Loans":
-        return (
-          text.includes("loan") ||
-          text.includes("credit")
-        );
+  const t = translations[language];
 
-      case "Entrepreneurship":
-        return (
-          text.includes("entrepreneur") ||
-          text.includes("startup") ||
-          text.includes("business")
-        );
-
-      case "SC / ST / Women":
-        return (
-          text.includes("sc") ||
-          text.includes("st") ||
-          text.includes("women")
-        );
-
-      case "Artisans":
-        return (
-          text.includes("artisan") ||
-          text.includes("craft")
-        );
-
-      case "Food Processing":
-        return (
-          text.includes("food") ||
-          text.includes("processing")
-        );
-
-      case "Credit Guarantee":
-        return text.includes(
-          "guarantee"
-        );
-
-      case "Street Vendors":
-        return (
-          text.includes("vendor") ||
-          text.includes(
-            "street vendor"
-          )
-        );
-
-      default:
-        return false;
-    }
-  };
-
-  /* ================= FILTER ================= */
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedScheme, setSelectedScheme] = useState(null);
 
   const filteredSchemes = useMemo(() => {
-    const search =
-      searchTerm.trim().toLowerCase();
+    const keyword = search.trim().toLowerCase();
+
+    const currentCategory = categoryConfig.find(
+      (category) => category.id === selectedCategory
+    );
 
     return schemes.filter((scheme) => {
+      const matchesCategory =
+        selectedCategory === "all" ||
+        currentCategory?.ids.includes(Number(scheme.id));
+
       const searchableText = [
         scheme.name,
         scheme.shortName,
-        scheme.ministry,
         scheme.description,
         scheme.benefit,
-        ...(scheme.category || []),
+        scheme.ministry,
         ...(scheme.tags || []),
-        ...(scheme.financialSupport || []),
+        ...(scheme.category || []),
         ...(scheme.businessType || []),
+        scheme.translations?.mr?.name,
+        scheme.translations?.mr?.description,
+        scheme.translations?.mr?.benefit,
+        scheme.translations?.hi?.name,
+        scheme.translations?.hi?.description,
+        scheme.translations?.hi?.benefit,
       ]
+        .filter(Boolean)
         .join(" ")
         .toLowerCase();
 
-      const searchMatch =
-        !search ||
-        searchableText.includes(search);
+      const matchesSearch =
+        keyword === "" || searchableText.includes(keyword);
 
-      return (
-        searchMatch &&
-        matchesCategory(
-          scheme,
-          selectedCategory
-        )
-      );
+      return matchesCategory && matchesSearch;
     });
-  }, [
-    schemes,
-    searchTerm,
-    selectedCategory,
-  ]);
+  }, [search, selectedCategory]);
 
-  /* ================= VIEW DETAILS ================= */
-
-  const handleViewDetails = (scheme) => {
-    navigate("/scheme-details", {
-      state: {
-        scheme: scheme,
-      },
-    });
+  const getCategoryForScheme = (scheme) => {
+    return (
+      categoryConfig.find(
+        (category) =>
+          category.id !== "all" &&
+          category.ids.includes(Number(scheme.id))
+      ) || categoryConfig[0]
+    );
   };
 
-  /* ================= JSX ================= */
+  const resetFilters = () => {
+    setSearch("");
+    setSelectedCategory("all");
+  };
 
   return (
-    <div className="schemes-page">
+    <main className="ys-schemes-page">
+      <section className="ys-schemes-hero">
+        <div className="ys-schemes-container">
 
-      {/* ================= HEADER ================= */}
-
-      <header className="schemes-header">
-        <div className="schemes-header-inner">
-
-          <Link
-            to="/"
-            className="schemes-logo"
-          >
-            <div className="schemes-logo-icon">
-              🤖
-            </div>
-
-            <div>
-              <strong>
-                YojanaSathi AI
-              </strong>
-
-              <span>
-                Government Scheme Discovery
-              </span>
-            </div>
-          </Link>
-
-          <Link
-            to="/match-scheme"
-            className="schemes-ai-button"
-          >
-            <Brain size={18} />
-            AI Scheme Matcher
-          </Link>
-
-        </div>
-      </header>
-
-      {/* ================= HERO ================= */}
-
-      <section className="schemes-intro">
-
-        <div className="schemes-intro-content">
-
-          <Link
-            to="/"
-            className="schemes-back-link"
-          >
-            ← Back to Home
-          </Link>
-
-          <div className="schemes-hero-grid">
-
-            <div>
-
-              <p className="schemes-label">
-                GOVERNMENT SCHEMES
-              </p>
-
-              <h1>
-                Find the Right
-                <br />
-                <span>
-                  Government Support
-                </span>
-              </h1>
-
-              <p className="schemes-description">
-                Explore loans, subsidies,
-                grants and business support
-                programs designed to help
-                entrepreneurs and individuals
-                grow.
-              </p>
-
-              <div className="schemes-stats">
-
-                <div>
-                  <strong>
-                    {schemes.length}
-                  </strong>
-
-                  <span>
-                    Schemes
-                  </span>
-                </div>
-
-                <div>
-                  <strong>
-                    8+
-                  </strong>
-
-                  <span>
-                    Support Areas
-                  </span>
-                </div>
-
-                <div>
-                  <strong>
-                    AI
-                  </strong>
-
-                  <span>
-                    Smart Matching
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-
-            {/* HERO VISUAL */}
-
-            <div className="schemes-hero-visual">
-
-              <div className="hero-floating-card card-one">
-
-                <IndianRupee size={20} />
-
-                <div>
-                  <strong>
-                    Financial Support
-                  </strong>
-
-                  <span>
-                    Loans & Subsidies
-                  </span>
-                </div>
-
-              </div>
-
-              <div className="hero-main-icon">
-                🤝
-              </div>
-
-              <div className="hero-floating-card card-two">
-
-                <CheckCircle2 size={20} />
-
-                <div>
-                  <strong>
-                    Smart Discovery
-                  </strong>
-
-                  <span>
-                    Find suitable schemes
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-
+          <div className="ys-schemes-eyebrow">
+            <Sparkles size={15} />
+            <span>{t.eyebrow}</span>
           </div>
 
-        </div>
+          <h1>{t.title}</h1>
 
-      </section>
+          <p className="ys-schemes-subtitle">
+            {t.subtitle}
+          </p>
 
-      {/* ================= SEARCH ================= */}
-
-      <section className="schemes-search-section">
-
-        <div className="schemes-search-wrapper">
-
-          <div className="schemes-search-box">
-
+          <div className="ys-schemes-search">
             <Search size={21} />
 
             <input
               type="text"
-              placeholder="Search by scheme name, loan, subsidy, startup..."
-              value={searchTerm}
-              onChange={(e) =>
-                setSearchTerm(
-                  e.target.value
-                )
+              value={search}
+              onChange={(event) =>
+                setSearch(event.target.value)
               }
+              placeholder={t.search}
+              aria-label={t.search}
             />
 
-            {searchTerm && (
+            {search && (
               <button
-                onClick={() =>
-                  setSearchTerm("")
-                }
-                className="search-clear"
+                type="button"
+                className="ys-search-clear"
+                onClick={() => setSearch("")}
+                aria-label={t.clear}
               >
-                ×
+                <X size={18} />
               </button>
             )}
-
           </div>
 
-          <Link
-            to="/match-scheme"
-            className="search-ai-button"
-          >
-            <Sparkles size={18} />
-            Find My Scheme
-          </Link>
+          <div className="ys-categories-area">
 
-        </div>
-
-        {/* CATEGORY BUTTONS */}
-
-        <div className="schemes-category-list">
-
-          {categories.map(
-            (category) => (
-
-              <button
-                key={category}
-                className={
-                  selectedCategory ===
-                  category
-                    ? "category-button active"
-                    : "category-button"
-                }
-                onClick={() =>
-                  setSelectedCategory(
-                    category
-                  )
-                }
-              >
-                {category}
-              </button>
-
-            )
-          )}
-
-        </div>
-
-      </section>
-
-      {/* ================= MAIN ================= */}
-
-      <main className="schemes-main">
-
-        {/* LOADING */}
-
-        {loading && (
-
-          <div className="schemes-message">
-
-            <div className="schemes-loading-icon">
-              🤖
+            <div className="ys-categories-heading">
+              <span>{t.categories}</span>
+              <small>{t.categoryHint}</small>
             </div>
 
-            <h2>
-              Finding Government Schemes...
-            </h2>
+            <div className="ys-category-pills">
+              {categoryConfig.map((category) => {
+                const Icon = category.icon;
+                const isActive =
+                  selectedCategory === category.id;
 
-            <p>
-              YojanaSathi AI is loading
-              available support programs.
-            </p>
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() =>
+                      setSelectedCategory(category.id)
+                    }
+                    className={`ys-category-pill category-${category.id} ${
+                      isActive ? "active" : ""
+                    }`}
+                    aria-pressed={isActive}
+                  >
+                    <Icon size={16} strokeWidth={2.2} />
 
-          </div>
-
-        )}
-
-        {/* ERROR */}
-
-        {!loading && error && (
-
-          <div className="schemes-message error">
-
-            <div className="schemes-loading-icon">
-              ⚠️
+                    <span>
+                      {category.label[language]}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-
-            <h2>
-              Unable to Load Schemes
-            </h2>
-
-            <p>
-              {error}
-            </p>
-
-            <button
-              className="scheme-primary-button"
-              onClick={() =>
-                window.location.reload()
-              }
-            >
-              Try Again
-            </button>
-
           </div>
 
-        )}
-
-        {/* SUCCESS */}
-
-        {!loading && !error && (
-
-          <>
-
-            {/* RESULTS HEADER */}
-
-            <div className="schemes-results-header">
+          <div className="ys-hero-bottom">
+            <div className="ys-total-stat">
+              <div className="ys-total-stat-icon">
+                <Landmark size={22} />
+              </div>
 
               <div>
-
-                <p className="schemes-label">
-                  SCHEME DIRECTORY
-                </p>
-
-                <h2>
-                  Explore Suitable Schemes
-                </h2>
-
-                <p className="results-subtitle">
-                  Showing{" "}
-                  <strong>
-                    {filteredSchemes.length}
-                  </strong>{" "}
-                  of{" "}
-                  <strong>
-                    {schemes.length}
-                  </strong>{" "}
-                  available schemes
-                </p>
-
+                <strong>{schemes.length}</strong>
+                <span>{t.totalSchemes}</span>
               </div>
-
-              <div className="schemes-result-info">
-
-                <CheckCircle2 size={18} />
-
-                Verified Directory
-
-              </div>
-
             </div>
-
-            {/* SCHEME CARDS */}
-
-            {filteredSchemes.length > 0 ? (
-
-              <div className="schemes-grid">
-
-                {filteredSchemes.map(
-                  (scheme) => {
-
-                    const states =
-                      getStates(
-                        scheme
-                      );
-
-                    const maxIncome =
-                      getMaxIncome(
-                        scheme
-                      );
-
-                    return (
-
-                      <article
-                        className="scheme-card attractive-card"
-                        key={scheme.id}
-                      >
-
-                        {/* CARD TOP */}
-
-                        <div className="scheme-card-top">
-
-                          <div className="scheme-card-icon">
-                            {scheme.icon}
-                          </div>
-
-                          <div className="scheme-card-status">
-
-                            <CheckCircle2
-                              size={14}
-                            />
-
-                            {scheme.status}
-
-                          </div>
-
-                        </div>
-
-                        {/* CARD CONTENT */}
-
-                        <div className="scheme-card-content">
-
-                          <p className="scheme-ministry">
-
-                            <Landmark
-                              size={14}
-                            />
-
-                            {scheme.ministry}
-
-                          </p>
-
-                          <h3>
-                            {scheme.name}
-                          </h3>
-
-                          <p className="scheme-short-name">
-                            {scheme.shortName}
-                          </p>
-
-                          <p className="scheme-description">
-                            {scheme.description}
-                          </p>
-
-                          {/* BENEFIT */}
-
-                          <div className="scheme-benefit">
-
-                            <div className="scheme-benefit-icon">
-
-                              <IndianRupee
-                                size={19}
-                              />
-
-                            </div>
-
-                            <div>
-
-                              <span>
-                                KEY BENEFIT
-                              </span>
-
-                              <strong>
-                                {scheme.benefit}
-                              </strong>
-
-                            </div>
-
-                          </div>
-
-                          {/* TAGS */}
-
-                          <div className="scheme-tags">
-
-                            {scheme.category
-                              .slice(0, 3)
-                              .map(
-                                (item) => (
-
-                                  <span
-                                    key={item}
-                                  >
-                                    {item}
-                                  </span>
-
-                                )
-                              )}
-
-                            {scheme.financialSupport
-                              .slice(0, 2)
-                              .map(
-                                (item) => (
-
-                                  <span
-                                    key={item}
-                                  >
-                                    {item}
-                                  </span>
-
-                                )
-                              )}
-
-                          </div>
-
-                          {/* ELIGIBILITY */}
-
-                          <div className="scheme-eligibility-box">
-
-                            <div className="eligibility-heading">
-
-                              <FileCheck2
-                                size={17}
-                              />
-
-                              <strong>
-                                Eligibility
-                              </strong>
-
-                            </div>
-
-                            <div className="eligibility-items">
-
-                              <div>
-
-                                <MapPin
-                                  size={15}
-                                />
-
-                                <span>
-
-                                  {states.length ===
-                                  1
-                                    ? states[0]
-                                    : `${states.length} eligible states`}
-
-                                </span>
-
-                              </div>
-
-                              <div>
-
-                                <BriefcaseBusiness
-                                  size={15}
-                                />
-
-                                <span>
-
-                                  {maxIncome
-                                    ? `Income up to ₹${maxIncome.toLocaleString(
-                                        "en-IN"
-                                      )}`
-                                    : "Income limit varies"}
-
-                                </span>
-
-                              </div>
-
-                            </div>
-
-                          </div>
-
-                        </div>
-
-                        {/* ACTION BUTTONS */}
-
-                        <div className="scheme-card-actions">
-
-                          {/* VIEW DETAILS */}
-
-                          <button
-                            type="button"
-                            className="scheme-secondary-button"
-                            onClick={() =>
-                              handleViewDetails(
-                                scheme
-                              )
-                            }
-                          >
-                            View Details
-                            <ArrowRight
-                              size={16}
-                            />
-                          </button>
-
-                          {/* APPLY */}
-
-                          {scheme.applyLink &&
-                          scheme.applyLink !==
-                            "#" ? (
-
-                            <a
-                              href={
-                                scheme.applyLink
-                              }
-                              target="_blank"
-                              rel="noreferrer"
-                              className="scheme-primary-button"
-                            >
-                              Apply Now
-
-                              <ExternalLink
-                                size={15}
-                              />
-
-                            </a>
-
-                          ) : (
-
-                            <button
-                              type="button"
-                              className="scheme-primary-button"
-                              onClick={() =>
-                                alert(
-                                  "Application link will be added after official verification."
-                                )
-                              }
-                            >
-                              Apply Now
-                            </button>
-
-                          )}
-
-                        </div>
-
-                      </article>
-
-                    );
-                  }
-                )}
-
-              </div>
-
-            ) : (
-
-              /* NO RESULTS */
-
-              <div className="schemes-message">
-
-                <div className="schemes-loading-icon">
-                  🔍
-                </div>
-
-                <h2>
-                  No Matching Schemes
-                </h2>
-
-                <p>
-                  Try another keyword or
-                  category.
-                </p>
-
-                <button
-                  className="scheme-primary-button"
-                  onClick={() => {
-                    setSearchTerm("");
-                    setSelectedCategory(
-                      "All"
-                    );
-                  }}
-                >
-                  Clear Filters
-                </button>
-
-              </div>
-
-            )}
-
-          </>
-
-        )}
-
-      </main>
-
-      {/* ================= AI SECTION ================= */}
-
-      <section className="schemes-ai-section">
-
-        <div className="schemes-ai-card">
-
-          <div className="schemes-ai-icon">
-            <Sparkles size={30} />
           </div>
 
-          <div className="schemes-ai-content">
+        </div>
+      </section>
 
-            <p className="schemes-label">
-              YOJANASATHI AI
-            </p>
+      <section className="ys-schemes-content">
+        <div className="ys-schemes-container">
 
-            <h2>
-              Not sure which scheme
-              is right for you?
-            </h2>
+          <div className="ys-schemes-section-head">
+            <div>
+              <h2>{t.heading}</h2>
 
-            <p>
-              Tell us your state,
-              category, business type,
-              income and financial need.
-              Our AI matcher will identify
-              suitable schemes for you.
-            </p>
+              <p>
+                {t.showing}{" "}
+                <strong>{filteredSchemes.length}</strong>{" "}
+                {t.schemes}
+              </p>
+            </div>
 
             <Link
-              to="/match-scheme"
-              className="scheme-primary-button"
+              to="/ai-matching"
+              className="ys-match-button"
             >
-              Find My Scheme
-              <ArrowRight size={17} />
+              <Sparkles size={18} />
+              <span>{t.matching}</span>
+              <ArrowRight size={18} />
             </Link>
-
           </div>
 
-          <div className="schemes-ai-visual">
+          {filteredSchemes.length === 0 ? (
+            <div className="ys-no-results">
+              <Search size={38} />
 
-            <Brain size={72} />
+              <h3>{t.noResults}</h3>
+              <p>{t.noResultsText}</p>
 
-            <div className="ai-visual-badge">
-              AI Powered
+              <button
+                type="button"
+                onClick={resetFilters}
+              >
+                {t.clear}
+              </button>
+            </div>
+          ) : (
+            <div className="ys-schemes-grid">
+              {filteredSchemes.map((scheme) => {
+                const category =
+                  getCategoryForScheme(scheme);
+
+                const Icon = category.icon;
+
+                return (
+                  <article
+                    className="ys-scheme-card"
+                    key={scheme.id}
+                  >
+                    <div className="ys-card-top">
+                      <span className="ys-scheme-category">
+                        <Icon size={14} />
+                        {category.label[language]}
+                      </span>
+
+                      <span className="ys-card-scheme-id">
+                        #{String(scheme.id).padStart(2, "0")}
+                      </span>
+                    </div>
+
+                    <div className="ys-scheme-card-main">
+                      <div className="ys-scheme-icon">
+                        <Icon size={24} />
+                      </div>
+
+                      <h3>
+                        {getLocalized(
+                          scheme,
+                          language,
+                          "name"
+                        )}
+                      </h3>
+
+                      <p className="ys-scheme-ministry">
+                        <Landmark size={14} />
+                        {scheme.ministry}
+                      </p>
+
+                      <p className="ys-scheme-description">
+                        {getLocalized(
+                          scheme,
+                          language,
+                          "description"
+                        )}
+                      </p>
+                    </div>
+
+                    <div className="ys-scheme-benefits">
+                      <div className="ys-benefit-title">
+                        <CheckCircle2 size={16} />
+                        <span>{t.benefits}</span>
+                      </div>
+
+                      <p>
+                        {getLocalized(
+                          scheme,
+                          language,
+                          "benefit"
+                        )}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="ys-view-details"
+                      onClick={() =>
+                        setSelectedScheme(scheme)
+                      }
+                    >
+                      <span>{t.details}</span>
+                      <ArrowRight size={18} />
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+
+          <div className="ys-schemes-disclaimer">
+            <ShieldCheck size={18} />
+            <p>{t.disclaimer}</p>
+          </div>
+
+        </div>
+      </section>
+
+      {selectedScheme && (
+        <div
+          className="ys-modal-overlay"
+          onClick={() => setSelectedScheme(null)}
+        >
+          <div
+            className="ys-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={getLocalized(
+              selectedScheme,
+              language,
+              "name"
+            )}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="ys-modal-close"
+              onClick={() => setSelectedScheme(null)}
+              aria-label={t.close}
+            >
+              <X size={21} />
+            </button>
+
+            <div className="ys-modal-header">
+              <span className="ys-modal-tag">
+                <Landmark size={15} />
+                {
+                  getCategoryForScheme(selectedScheme)
+                    .label[language]
+                }
+              </span>
+
+              <h2>
+                {getLocalized(
+                  selectedScheme,
+                  language,
+                  "name"
+                )}
+              </h2>
+
+              <p>{selectedScheme.ministry}</p>
             </div>
 
+            <div className="ys-modal-body">
+              <p className="ys-modal-description">
+                {getLocalized(
+                  selectedScheme,
+                  language,
+                  "description"
+                )}
+              </p>
+
+              <div className="ys-modal-info-card">
+                <h3>
+                  <CheckCircle2 size={19} />
+                  {t.benefits}
+                </h3>
+
+                <p>
+                  {getLocalized(
+                    selectedScheme,
+                    language,
+                    "benefit"
+                  )}
+                </p>
+              </div>
+
+              <div className="ys-modal-info-card">
+                <h3>
+                  <ShieldCheck size={19} />
+                  {t.eligibility}
+                </h3>
+
+                <p>
+                  {getEligibility(
+                    selectedScheme,
+                    language
+                  )}
+                </p>
+              </div>
+
+              {selectedScheme.financialSupport?.length > 0 && (
+                <div className="ys-modal-info-card">
+                  <h3>
+                    <Landmark size={19} />
+                    {t.support}
+                  </h3>
+
+                  <ul>
+                    {selectedScheme.financialSupport.map(
+                      (item, index) => (
+                        <li key={index}>{item}</li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
+
+              {selectedScheme.documents?.length > 0 && (
+                <div className="ys-modal-info-card">
+                  <h3>
+                    <FileText size={19} />
+                    {t.documents}
+                  </h3>
+
+                  <ul>
+                    {selectedScheme.documents.map(
+                      (document, index) => (
+                        <li key={index}>{document}</li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
+
+              <div className="ys-modal-actions">
+                {selectedScheme.officialLink && (
+                  <a
+                    href={selectedScheme.officialLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ys-modal-official"
+                  >
+                    {t.website}
+                    <ExternalLink size={17} />
+                  </a>
+                )}
+
+                {selectedScheme.applyLink && (
+                  <a
+                    href={selectedScheme.applyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ys-modal-apply"
+                  >
+                    {t.apply}
+                    <ArrowRight size={17} />
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-
         </div>
-
-      </section>
-
-      {/* ================= JAN SAMARTH ================= */}
-
-      <section className="schemes-platform-section">
-
-        <div className="platform-icon">
-          <WalletCards size={30} />
-        </div>
-
-        <div className="platform-content">
-
-          <p className="schemes-label">
-            OFFICIAL PLATFORM
-          </p>
-
-          <h2>
-            Explore through JanSamarth
-          </h2>
-
-          <p>
-            Use the official JanSamarth
-            platform to explore eligible
-            credit-linked government
-            schemes.
-          </p>
-
-        </div>
-
-        <a
-          href="https://www.jansamarth.in/"
-          target="_blank"
-          rel="noreferrer"
-          className="scheme-secondary-button"
-        >
-          Visit JanSamarth
-          <ExternalLink size={16} />
-        </a>
-
-      </section>
-
-      {/* ================= TRUST ================= */}
-
-      <section className="schemes-trust-section">
-
-        <div className="trust-item">
-
-          <ShieldCheck size={28} />
-
-          <div>
-
-            <strong>
-              Government-focused
-            </strong>
-
-            <span>
-              Discover relevant public
-              support programs.
-            </span>
-
-          </div>
-
-        </div>
-
-        <div className="trust-item">
-
-          <FileCheck2 size={28} />
-
-          <div>
-
-            <strong>
-              Easy Eligibility
-            </strong>
-
-            <span>
-              Understand basic eligibility
-              before applying.
-            </span>
-
-          </div>
-
-        </div>
-
-        <div className="trust-item">
-
-          <WalletCards size={28} />
-
-          <div>
-
-            <strong>
-              Multiple Support Types
-            </strong>
-
-            <span>
-              Loans, subsidies, credit
-              and entrepreneurship support.
-            </span>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* ================= FOOTER ================= */}
-
-      <footer className="schemes-footer">
-
-        <div>
-
-          <strong>
-            YojanaSathi AI
-          </strong>
-
-          <p>
-            AI-powered government scheme
-            discovery platform.
-          </p>
-
-        </div>
-
-        <div className="schemes-footer-links">
-
-          <Link to="/">
-            Home
-          </Link>
-
-          <Link to="/match-scheme">
-            AI Matcher
-          </Link>
-
-          <Link to="/calculator">
-            Calculator
-          </Link>
-
-          <Link to="/partner">
-            Partner
-          </Link>
-
-        </div>
-
-      </footer>
-
-    </div>
+      )}
+    </main>
   );
 }
-
-export default Schemes;

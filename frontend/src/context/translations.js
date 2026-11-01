@@ -1,0 +1,107 @@
+
+export const translations = {
+  en: {
+    home: "Home",
+    schemes: "Schemes",
+    aiMatch: "AI Matching",
+    eligibility: "Eligibility",
+    calculator: "Calculator",
+    partner: "Find Partner",
+    tracking: "Track Application",
+    literacy: "Financial Literacy",
+    about: "About",
+    login: "Login",
+
+    heroBadge: "AI-Powered Government Scheme Discovery",
+    heroTitle1: "Find the Right",
+    heroTitle2: "Government Scheme",
+    heroDescription:
+      "Discover government schemes, check your eligibility, and find financial support for your business with YojanaSathi AI.",
+
+    findScheme: "Explore Schemes",
+    step3: "Check Eligibility",
+    smartMatching: "Smart Matching",
+    easyEligibility: "Easy Eligibility",
+    businessSupport: "Business Support",
+
+    eligibilityGuidance: "Eligibility Guidance",
+    aiAssisted: "AI Assisted",
+    businessJourney: "YOUR BUSINESS JOURNEY",
+    discoverOpportunities: "Discover New Opportunities",
+    suitableSupport: "Find suitable financial support for your business.",
+    governmentSchemes: "Government Schemes",
+    loansSubsidies: "Loans & Subsidies",
+    exploreOpportunities: "Explore Opportunities",
+    startMatching: "Start AI Matching",
+  },
+
+  hi: {
+    home: "होम",
+    schemes: "योजनाएँ",
+    aiMatch: "एआई मिलान",
+    eligibility: "पात्रता जाँच",
+    calculator: "कैलकुलेटर",
+    partner: "सहायता भागीदार",
+    tracking: "आवेदन ट्रैक करें",
+    literacy: "वित्तीय साक्षरता",
+    about: "हमारे बारे में",
+    login: "लॉगिन",
+
+    heroBadge: "एआई आधारित सरकारी योजना खोज",
+    heroTitle1: "अपने लिए सही",
+    heroTitle2: "सरकारी योजना खोजें",
+    heroDescription:
+      "योजना साथी एआई के साथ सरकारी योजनाएँ खोजें, अपनी पात्रता जाँचें और व्यवसाय के लिए वित्तीय सहायता प्राप्त करें।",
+
+    findScheme: "योजनाएँ देखें",
+    step3: "पात्रता जाँचें",
+    smartMatching: "स्मार्ट मिलान",
+    easyEligibility: "आसान पात्रता जाँच",
+    businessSupport: "व्यवसाय सहायता",
+
+    eligibilityGuidance: "पात्रता मार्गदर्शन",
+    aiAssisted: "एआई सहायता",
+    businessJourney: "आपकी व्यावसायिक यात्रा",
+    discoverOpportunities: "नए अवसर खोजें",
+    suitableSupport: "अपने व्यवसाय के लिए उपयुक्त वित्तीय सहायता खोजें।",
+    governmentSchemes: "सरकारी योजनाएँ",
+    loansSubsidies: "ऋण और सब्सिडी",
+    exploreOpportunities: "अवसर खोजें",
+    startMatching: "एआई मिलान शुरू करें",
+  },
+
+  mr: {
+    home: "मुख्यपृष्ठ",
+    schemes: "योजना",
+    aiMatch: "एआय जुळणी",
+    eligibility: "पात्रता तपासणी",
+    calculator: "कॅल्क्युलेटर",
+    partner: "सहाय्य भागीदार",
+    tracking: "अर्जाचा मागोवा",
+    literacy: "आर्थिक साक्षरता",
+    about: "आमच्याबद्दल",
+    login: "लॉगिन",
+
+    heroBadge: "एआय आधारित सरकारी योजना शोध",
+    heroTitle1: "तुमच्यासाठी योग्य",
+    heroTitle2: "सरकारी योजना शोधा",
+    heroDescription:
+      "योजनासाथी एआयच्या मदतीने सरकारी योजना शोधा, पात्रता तपासा आणि तुमच्या व्यवसायासाठी आर्थिक सहाय्य मिळवा.",
+
+    findScheme: "योजना पाहा",
+    step3: "पात्रता तपासा",
+    smartMatching: "स्मार्ट जुळणी",
+    easyEligibility: "सोपी पात्रता तपासणी",
+    businessSupport: "व्यवसाय सहाय्य",
+
+    eligibilityGuidance: "पात्रता मार्गदर्शन",
+    aiAssisted: "एआय सहाय्य",
+    businessJourney: "तुमचा व्यवसाय प्रवास",
+    discoverOpportunities: "नवीन संधी शोधा",
+    suitableSupport: "तुमच्या व्यवसायासाठी योग्य आर्थिक सहाय्य शोधा.",
+    governmentSchemes: "सरकारी योजना",
+    loansSubsidies: "कर्ज आणि अनुदान",
+    exploreOpportunities: "संधी शोधा",
+    startMatching: "एआय जुळणी सुरू करा",
+  },
+};

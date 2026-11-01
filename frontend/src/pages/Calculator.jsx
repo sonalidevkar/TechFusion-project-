@@ -10,8 +10,80 @@ import {
 
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext.jsx";
+
+const calculatorTranslations = {
+  hi: {
+    'Find • Qualify • Apply • Grow': 'खोजें • पात्रता • आवेदन • विकास',
+    'Back to Home': 'होम पर वापस जाएं',
+    'Smart Financial Calculator': 'स्मार्ट वित्तीय कैलकुलेटर',
+    'Know Your Loan': 'अपने ऋण को समझें',
+    'Before You Apply': 'आवेदन करने से पहले',
+    'Estimate your monthly EMI, total interest and repayment\n            amount before choosing a loan or financial support option.': 'ऋण या वित्तीय सहायता चुनने से पहले मासिक ईएमआई, कुल ब्याज और भुगतान का अनुमान लगाएं।',
+    'LOAN DETAILS': 'ऋण विवरण',
+    'Enter Your Requirement': 'अपनी आवश्यकता दर्ज करें',
+    'Loan Amount': 'ऋण राशि',
+    'Annual Interest Rate': 'वार्षिक ब्याज दर',
+    'Loan Tenure': 'ऋण अवधि',
+    'Year': 'वर्ष',
+    'Years': 'वर्ष',
+    '1 Year': '1 वर्ष',
+    '20 Years': '20 वर्ष',
+    'Use the calculator for an estimate. Actual EMI,\n                interest and loan terms depend on the lender and\n                applicable scheme conditions.': 'यह कैलकुलेटर केवल अनुमान देता है। वास्तविक ईएमआई, ब्याज और ऋण शर्तें ऋणदाता तथा योजना पर निर्भर करती हैं।',
+    'ESTIMATED RESULT': 'अनुमानित परिणाम',
+    'Your Loan Summary': 'आपके ऋण का सारांश',
+    'Estimated Monthly EMI': 'अनुमानित मासिक ईएमआई',
+    'per month': 'प्रति माह',
+    'Principal': 'मूलधन',
+    'Total Interest': 'कुल ब्याज',
+    'Total Repayment': 'कुल भुगतान',
+    'Interest Rate': 'ब्याज दर',
+    'Repayment Breakdown': 'भुगतान का विवरण',
+    'Interest': 'ब्याज',
+    'Find Suitable Government Schemes': 'उपयुक्त सरकारी योजनाएं खोजें',
+    'Compare your estimated repayment with\n                available government-supported financing options.': 'अपने अनुमानित भुगतान की तुलना उपलब्ध सरकारी वित्तीय सहायता विकल्पों से करें।',
+    'Compare rates before selecting a loan.': 'ऋण चुनने से पहले ब्याज दरों की तुलना करें।',
+    'Choose a tenure that fits your monthly cash flow.': 'अपने मासिक बजट के अनुसार ऋण अवधि चुनें।',
+    'Check scheme eligibility before applying.': 'आवेदन करने से पहले योजना की पात्रता जांचें।',
+  },
+  mr: {
+    'Find • Qualify • Apply • Grow': 'शोधा • पात्रता • अर्ज • प्रगती',
+    'Back to Home': 'मुख्यपृष्ठावर परत जा',
+    'Smart Financial Calculator': 'स्मार्ट आर्थिक कॅल्क्युलेटर',
+    'Know Your Loan': 'तुमचे कर्ज समजून घ्या',
+    'Before You Apply': 'अर्ज करण्यापूर्वी',
+    'Estimate your monthly EMI, total interest and repayment\n            amount before choosing a loan or financial support option.': 'कर्ज किंवा आर्थिक मदत निवडण्यापूर्वी मासिक EMI, एकूण व्याज आणि परतफेडीचा अंदाज घ्या.',
+    'LOAN DETAILS': 'कर्जाचा तपशील',
+    'Enter Your Requirement': 'तुमची गरज नोंदवा',
+    'Loan Amount': 'कर्जाची रक्कम',
+    'Annual Interest Rate': 'वार्षिक व्याजदर',
+    'Loan Tenure': 'कर्जाचा कालावधी',
+    'Year': 'वर्ष',
+    'Years': 'वर्षे',
+    '1 Year': '1 वर्ष',
+    '20 Years': '20 वर्षे',
+    'Use the calculator for an estimate. Actual EMI,\n                interest and loan terms depend on the lender and\n                applicable scheme conditions.': 'हा कॅल्क्युलेटर फक्त अंदाज देतो. वास्तविक EMI, व्याज आणि कर्जाच्या अटी कर्जदाता व योजनेवर अवलंबून असतात.',
+    'ESTIMATED RESULT': 'अंदाजित निकाल',
+    'Your Loan Summary': 'तुमच्या कर्जाचा सारांश',
+    'Estimated Monthly EMI': 'अंदाजित मासिक EMI',
+    'per month': 'दरमहा',
+    'Principal': 'मुद्दल',
+    'Total Interest': 'एकूण व्याज',
+    'Total Repayment': 'एकूण परतफेड',
+    'Interest Rate': 'व्याजदर',
+    'Repayment Breakdown': 'परतफेडीचे विभाजन',
+    'Interest': 'व्याज',
+    'Find Suitable Government Schemes': 'योग्य सरकारी योजना शोधा',
+    'Compare your estimated repayment with\n                available government-supported financing options.': 'तुमच्या अंदाजित परतफेडीची तुलना उपलब्ध सरकारी आर्थिक मदतीच्या पर्यायांशी करा.',
+    'Compare rates before selecting a loan.': 'कर्ज निवडण्यापूर्वी व्याजदरांची तुलना करा.',
+    'Choose a tenure that fits your monthly cash flow.': 'तुमच्या मासिक उत्पन्न-खर्चानुसार कर्जाचा कालावधी निवडा.',
+    'Check scheme eligibility before applying.': 'अर्ज करण्यापूर्वी योजनेची पात्रता तपासा.',
+  },
+};
 
 function Calculator() {
+  const { language } = useLanguage();
+  const tr = (key) => calculatorTranslations[language]?.[key] || key;
   const [loanAmount, setLoanAmount] = useState(100000);
   const [interestRate, setInterestRate] = useState(8);
   const [tenure, setTenure] = useState(3);
@@ -47,7 +119,7 @@ function Calculator() {
   }, [loanAmount, interestRate, tenure]);
 
   const formatCurrency = (value) => {
-    return new Intl.NumberFormat("en-IN", {
+    return new Intl.NumberFormat(language === "mr" ? "mr-IN" : language === "hi" ? "hi-IN" : "en-IN", {
       style: "currency",
       currency: "INR",
       maximumFractionDigits: 0,
@@ -71,7 +143,7 @@ function Calculator() {
 
           <div>
             <h2>YojanaSathi AI</h2>
-            <p>Find • Qualify • Apply • Grow</p>
+            <p>{tr('Find • Qualify • Apply • Grow')}</p>
           </div>
 
         </Link>
@@ -81,7 +153,7 @@ function Calculator() {
           className="calculator-back-home"
         >
           <ArrowLeft size={16} />
-          Back to Home
+          {tr('Back to Home')}
         </Link>
 
       </header>
@@ -99,18 +171,17 @@ function Calculator() {
 
           <div className="calculator-badge">
             <CalculatorIcon size={15} />
-            Smart Financial Calculator
+            {tr('Smart Financial Calculator')}
           </div>
 
           <h1>
-            Know Your Loan
+            {tr('Know Your Loan')}
             <br />
-            <span>Before You Apply</span>
+            <span>{tr('Before You Apply')}</span>
           </h1>
 
           <p>
-            Estimate your monthly EMI, total interest and repayment
-            amount before choosing a loan or financial support option.
+            {tr('Estimate your monthly EMI, total interest and repayment\n            amount before choosing a loan or financial support option.')}
           </p>
 
         </section>
@@ -129,10 +200,10 @@ function Calculator() {
             <div className="calculator-card-heading">
 
               <div>
-                <span>LOAN DETAILS</span>
+                <span>{tr('LOAN DETAILS')}</span>
 
                 <h2>
-                  Enter Your Requirement
+                  {tr('Enter Your Requirement')}
                 </h2>
               </div>
 
@@ -150,7 +221,7 @@ function Calculator() {
               <div className="calculator-label-row">
 
                 <label>
-                  Loan Amount
+                  {tr('Loan Amount')}
                 </label>
 
                 <strong>
@@ -208,7 +279,7 @@ function Calculator() {
               <div className="calculator-label-row">
 
                 <label>
-                  Annual Interest Rate
+                  {tr('Annual Interest Rate')}
                 </label>
 
                 <strong>
@@ -272,11 +343,11 @@ function Calculator() {
               <div className="calculator-label-row">
 
                 <label>
-                  Loan Tenure
+                  {tr('Loan Tenure')}
                 </label>
 
                 <strong>
-                  {tenure} {tenure === 1 ? "Year" : "Years"}
+                  {tenure} {tenure === 1 ? tr("Year") : tr("Years")}
                 </strong>
 
               </div>
@@ -304,7 +375,7 @@ function Calculator() {
                 />
 
                 <span>
-                  Years
+                  {tr('Years')}
                 </span>
 
               </div>
@@ -323,8 +394,8 @@ function Calculator() {
               />
 
               <div className="calculator-range-labels">
-                <span>1 Year</span>
-                <span>20 Years</span>
+                <span>{tr('1 Year')}</span>
+                <span>{tr('20 Years')}</span>
               </div>
 
             </div>
@@ -337,9 +408,7 @@ function Calculator() {
               <Sparkles size={17} />
 
               <p>
-                Use the calculator for an estimate. Actual EMI,
-                interest and loan terms depend on the lender and
-                applicable scheme conditions.
+                {tr('Use the calculator for an estimate. Actual EMI,\n                interest and loan terms depend on the lender and\n                applicable scheme conditions.')}
               </p>
 
             </div>
@@ -356,11 +425,11 @@ function Calculator() {
               <div>
 
                 <span>
-                  ESTIMATED RESULT
+                  {tr('ESTIMATED RESULT')}
                 </span>
 
                 <h2>
-                  Your Loan Summary
+                  {tr('Your Loan Summary')}
                 </h2>
 
               </div>
@@ -377,7 +446,7 @@ function Calculator() {
             <div className="emi-highlight">
 
               <span>
-                Estimated Monthly EMI
+                {tr('Estimated Monthly EMI')}
               </span>
 
               <strong>
@@ -385,7 +454,7 @@ function Calculator() {
               </strong>
 
               <small>
-                per month
+                {tr('per month')}
               </small>
 
             </div>
@@ -398,7 +467,7 @@ function Calculator() {
               <div className="summary-box">
 
                 <span>
-                  Principal
+                  {tr('Principal')}
                 </span>
 
                 <strong>
@@ -411,7 +480,7 @@ function Calculator() {
               <div className="summary-box">
 
                 <span>
-                  Total Interest
+                  {tr('Total Interest')}
                 </span>
 
                 <strong>
@@ -426,7 +495,7 @@ function Calculator() {
               <div className="summary-box">
 
                 <span>
-                  Total Repayment
+                  {tr('Total Repayment')}
                 </span>
 
                 <strong>
@@ -441,7 +510,7 @@ function Calculator() {
               <div className="summary-box">
 
                 <span>
-                  Interest Rate
+                  {tr('Interest Rate')}
                 </span>
 
                 <strong>
@@ -460,7 +529,7 @@ function Calculator() {
               <div className="repayment-visual-header">
 
                 <span>
-                  Repayment Breakdown
+                  {tr('Repayment Breakdown')}
                 </span>
 
                 <span>
@@ -505,12 +574,12 @@ function Calculator() {
 
                 <span>
                   <i className="principal-dot"></i>
-                  Principal
+                  {tr('Principal')}
                 </span>
 
                 <span>
                   <i className="interest-dot"></i>
-                  Interest
+                  {tr('Interest')}
                 </span>
 
               </div>
@@ -525,7 +594,7 @@ function Calculator() {
               className="calculator-find-scheme"
             >
 
-              Find Suitable Government Schemes
+              {tr('Find Suitable Government Schemes')}
 
               <ArrowRight size={17} />
 
@@ -539,8 +608,7 @@ function Calculator() {
               <WalletCards size={15} />
 
               <span>
-                Compare your estimated repayment with
-                available government-supported financing options.
+                {tr('Compare your estimated repayment with\n                available government-supported financing options.')}
               </span>
 
             </div>
@@ -563,7 +631,7 @@ function Calculator() {
             </div>
 
             <span>
-              Compare rates before selecting a loan.
+              {tr('Compare rates before selecting a loan.')}
             </span>
 
           </div>
@@ -575,7 +643,7 @@ function Calculator() {
             </div>
 
             <span>
-              Choose a tenure that fits your monthly cash flow.
+              {tr('Choose a tenure that fits your monthly cash flow.')}
             </span>
 
           </div>
@@ -587,7 +655,7 @@ function Calculator() {
             </div>
 
             <span>
-              Check scheme eligibility before applying.
+              {tr('Check scheme eligibility before applying.')}
             </span>
 
           </div>
